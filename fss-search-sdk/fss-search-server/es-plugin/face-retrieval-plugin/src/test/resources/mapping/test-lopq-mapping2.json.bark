@@ -1,0 +1,16 @@
+{
+    "test": {
+        "_source": {
+            "excludes": ["rt_image"]
+        },
+        "properties": {
+            "rt_feature": {
+                "type": "feature",
+                "coarse_encode": true,
+                "lopq_encode":true,
+                "index": false,
+                "doc_values": true
+            }
+        }
+    }
+}

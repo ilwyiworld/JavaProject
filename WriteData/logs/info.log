@@ -1,0 +1,165 @@
+2018-05-16 15:42:03 INFO  Initial:35 - #################### batch import start ####################
+2018-05-16 15:42:03 INFO  Initial:46 - ##### load phoenix: jdbc:phoenix:lv120.dct-znv.com:2181:/hbase
+2018-05-16 15:42:04 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2018-05-16 15:42:04 ERROR Shell:373 - Failed to locate the winutils binary in the hadoop binary path
+java.io.IOException: Could not locate executable null\bin\winutils.exe in the Hadoop binaries.
+	at org.apache.hadoop.util.Shell.getQualifiedBinPath(Shell.java:355)
+	at org.apache.hadoop.util.Shell.getWinUtilsPath(Shell.java:370)
+	at org.apache.hadoop.util.Shell.<clinit>(Shell.java:363)
+	at org.apache.hadoop.util.StringUtils.<clinit>(StringUtils.java:78)
+	at org.apache.hadoop.security.Groups.parseStaticMapping(Groups.java:93)
+	at org.apache.hadoop.security.Groups.<init>(Groups.java:77)
+	at org.apache.hadoop.security.Groups.getUserToGroupsMappingService(Groups.java:240)
+	at org.apache.hadoop.security.UserGroupInformation.initialize(UserGroupInformation.java:257)
+	at org.apache.hadoop.security.UserGroupInformation.ensureInitialized(UserGroupInformation.java:234)
+	at org.apache.hadoop.security.UserGroupInformation.loginUserFromSubject(UserGroupInformation.java:749)
+	at org.apache.hadoop.security.UserGroupInformation.getLoginUser(UserGroupInformation.java:734)
+	at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:607)
+	at org.apache.hadoop.hbase.security.User$SecureHadoopUser.<init>(User.java:286)
+	at org.apache.hadoop.hbase.security.User$SecureHadoopUser.<init>(User.java:282)
+	at org.apache.hadoop.hbase.security.User.getCurrent(User.java:185)
+	at org.apache.phoenix.jdbc.PhoenixEmbeddedDriver$ConnectionInfo.<init>(PhoenixEmbeddedDriver.java:429)
+	at org.apache.phoenix.jdbc.PhoenixEmbeddedDriver$ConnectionInfo.create(PhoenixEmbeddedDriver.java:288)
+	at org.apache.phoenix.jdbc.PhoenixDriver.getConnectionQueryServices(PhoenixDriver.java:213)
+	at org.apache.phoenix.jdbc.PhoenixEmbeddedDriver.createConnection(PhoenixEmbeddedDriver.java:147)
+	at org.apache.phoenix.jdbc.PhoenixDriver.connect(PhoenixDriver.java:202)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:208)
+	at com.znv.fss.ExcelToPhoenix.utils.ConnectionPool.newConnection(ConnectionPool.java:175)
+	at com.znv.fss.ExcelToPhoenix.utils.ConnectionPool.createConnections(ConnectionPool.java:153)
+	at com.znv.fss.ExcelToPhoenix.utils.ConnectionPool.createPool(ConnectionPool.java:131)
+	at com.znv.fss.ExcelToPhoenix.Initial.main(Initial.java:49)
+2018-05-16 15:42:06 INFO  RecoverableZooKeeper:120 - Process identifier=hconnection-0x72967906 connecting to ZooKeeper ensemble=lv120.dct-znv.com:2181
+2018-05-16 15:42:06 INFO  ZooKeeper:100 - Client environment:zookeeper.version=3.4.6-1569965, built on 02/20/2014 09:09 GMT
+2018-05-16 15:42:06 INFO  ZooKeeper:100 - Client environment:host.name=10.45.144.183
+2018-05-16 15:42:06 INFO  ZooKeeper:100 - Client environment:java.version=1.8.0_131
+2018-05-16 15:42:06 INFO  ZooKeeper:100 - Client environment:java.vendor=Oracle Corporation
+2018-05-16 15:42:06 INFO  ZooKeeper:100 - Client environment:java.home=D:\Program Files\Java\jdk1.8.0_131\jre
+2018-05-16 15:42:06 INFO  ZooKeeper:100 - Client environment:java.class.path=D:\Program Files\Java\jdk1.8.0_131\jre\lib\charsets.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\deploy.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\access-bridge-64.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\cldrdata.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\dnsns.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\jaccess.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\jfxrt.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\localedata.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\nashorn.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\sunec.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\sunjce_provider.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\sunmscapi.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\sunpkcs11.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\zipfs.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\javaws.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\jce.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\jfr.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\jfxswt.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\jsse.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\management-agent.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\plugin.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\resources.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\rt.jar;E:\上海、\htm出差\WriteData\target\classes;C:\Users\ZNV\.m2\repository\com\alibaba\fastjson\1.2.4\fastjson-1.2.4.jar;C:\Users\ZNV\.m2\repository\org\apache\httpcomponents\httpmime\4.5.2\httpmime-4.5.2.jar;C:\Users\ZNV\.m2\repository\org\apache\httpcomponents\httpclient\4.5.2\httpclient-4.5.2.jar;C:\Users\ZNV\.m2\repository\org\apache\httpcomponents\httpcore\4.4.4\httpcore-4.4.4.jar;C:\Users\ZNV\.m2\repository\org\apache\hadoop\hadoop-common\2.5.1\hadoop-common-2.5.1.jar;C:\Users\ZNV\.m2\repository\org\apache\hadoop\hadoop-annotations\2.5.1\hadoop-annotations-2.5.1.jar;D:\Program Files\Java\jdk1.8.0_131\lib\tools.jar;C:\Users\ZNV\.m2\repository\com\google\guava\guava\11.0.2\guava-11.0.2.jar;C:\Users\ZNV\.m2\repository\commons-cli\commons-cli\1.2\commons-cli-1.2.jar;C:\Users\ZNV\.m2\repository\org\apache\commons\commons-math3\3.1.1\commons-math3-3.1.1.jar;C:\Users\ZNV\.m2\repository\xmlenc\xmlenc\0.52\xmlenc-0.52.jar;C:\Users\ZNV\.m2\repository\commons-codec\commons-codec\1.4\commons-codec-1.4.jar;C:\Users\ZNV\.m2\repository\commons-io\commons-io\2.4\commons-io-2.4.jar;C:\Users\ZNV\.m2\repository\commons-net\commons-net\3.1\commons-net-3.1.jar;C:\Users\ZNV\.m2\repository\commons-collections\commons-collections\3.2.1\commons-collections-3.2.1.jar;C:\Users\ZNV\.m2\repository\javax\servlet\servlet-api\2.5\servlet-api-2.5.jar;C:\Users\ZNV\.m2\repository\org\mortbay\jetty\jetty\6.1.26\jetty-6.1.26.jar;C:\Users\ZNV\.m2\repository\org\mortbay\jetty\jetty-util\6.1.26\jetty-util-6.1.26.jar;C:\Users\ZNV\.m2\repository\com\sun\jersey\jersey-core\1.9\jersey-core-1.9.jar;C:\Users\ZNV\.m2\repository\com\sun\jersey\jersey-json\1.9\jersey-json-1.9.jar;C:\Users\ZNV\.m2\repository\org\codehaus\jettison\jettison\1.1\jettison-1.1.jar;C:\Users\ZNV\.m2\repository\com\sun\xml\bind\jaxb-impl\2.2.3-1\jaxb-impl-2.2.3-1.jar;C:\Users\ZNV\.m2\repository\javax\xml\bind\jaxb-api\2.2.2\jaxb-api-2.2.2.jar;C:\Users\ZNV\.m2\repository\javax\xml\stream\stax-api\1.0-2\stax-api-1.0-2.jar;C:\Users\ZNV\.m2\repository\javax\activation\activation\1.1\activation-1.1.jar;C:\Users\ZNV\.m2\repository\org\codehaus\jackson\jackson-jaxrs\1.8.3\jackson-jaxrs-1.8.3.jar;C:\Users\ZNV\.m2\repository\org\codehaus\jackson\jackson-xc\1.8.3\jackson-xc-1.8.3.jar;C:\Users\ZNV\.m2\repository\com\sun\jersey\jersey-server\1.9\jersey-server-1.9.jar;C:\Users\ZNV\.m2\repository\asm\asm\3.1\asm-3.1.jar;C:\Users\ZNV\.m2\repository\tomcat\jasper-compiler\5.5.23\jasper-compiler-5.5.23.jar;C:\Users\ZNV\.m2\repository\tomcat\jasper-runtime\5.5.23\jasper-runtime-5.5.23.jar;C:\Users\ZNV\.m2\repository\javax\servlet\jsp\jsp-api\2.1\jsp-api-2.1.jar;C:\Users\ZNV\.m2\repository\commons-el\commons-el\1.0\commons-el-1.0.jar;C:\Users\ZNV\.m2\repository\commons-logging\commons-logging\1.1.3\commons-logging-1.1.3.jar;C:\Users\ZNV\.m2\repository\log4j\log4j\1.2.17\log4j-1.2.17.jar;C:\Users\ZNV\.m2\repository\net\java\dev\jets3t\jets3t\0.9.0\jets3t-0.9.0.jar;C:\Users\ZNV\.m2\repository\com\jamesmurty\utils\java-xmlbuilder\0.4\java-xmlbuilder-0.4.jar;C:\Users\ZNV\.m2\repository\commons-lang\commons-lang\2.6\commons-lang-2.6.jar;C:\Users\ZNV\.m2\repository\commons-configuration\commons-configuration\1.6\commons-configuration-1.6.jar;C:\Users\ZNV\.m2\repository\commons-digester\commons-digester\1.8\commons-digester-1.8.jar;C:\Users\ZNV\.m2\repository\commons-beanutils\commons-beanutils\1.7.0\commons-beanutils-1.7.0.jar;C:\Users\ZNV\.m2\repository\commons-beanutils\commons-beanutils-core\1.8.0\commons-beanutils-core-1.8.0.jar;C:\Users\ZNV\.m2\repository\org\slf4j\slf4j-api\1.7.5\slf4j-api-1.7.5.jar;C:\Users\ZNV\.m2\repository\org\slf4j\slf4j-log4j12\1.7.5\slf4j-log4j12-1.7.5.jar;C:\Users\ZNV\.m2\repository\org\codehaus\jackson\jackson-core-asl\1.9.13\jackson-core-asl-1.9.13.jar;C:\Users\ZNV\.m2\repository\org\codehaus\jackson\jackson-mapper-asl\1.9.13\jackson-mapper-asl-1.9.13.jar;C:\Users\ZNV\.m2\repository\org\apache\avro\avro\1.7.4\avro-1.7.4.jar;C:\Users\ZNV\.m2\repository\com\thoughtworks\paranamer\paranamer\2.3\paranamer-2.3.jar;C:\Users\ZNV\.m2\repository\org\xerial\snappy\snappy-java\1.0.4.1\snappy-java-1.0.4.1.jar;C:\Users\ZNV\.m2\repository\com\google\protobuf\protobuf-java\2.5.0\protobuf-java-2.5.0.jar;C:\Users\ZNV\.m2\repository\org\apache\hadoop\hadoop-auth\2.5.1\hadoop-auth-2.5.1.jar;C:\Users\ZNV\.m2\repository\org\apache\directory\server\apacheds-kerberos-codec\2.0.0-M15\apacheds-kerberos-codec-2.0.0-M15.jar;C:\Users\ZNV\.m2\repository\org\apache\directory\server\apacheds-i18n\2.0.0-M15\apacheds-i18n-2.0.0-M15.jar;C:\Users\ZNV\.m2\repository\org\apache\directory\api\api-asn1-api\1.0.0-M20\api-asn1-api-1.0.0-M20.jar;C:\Users\ZNV\.m2\repository\org\apache\directory\api\api-util\1.0.0-M20\api-util-1.0.0-M20.jar;C:\Users\ZNV\.m2\repository\com\jcraft\jsch\0.1.42\jsch-0.1.42.jar;C:\Users\ZNV\.m2\repository\com\google\code\findbugs\jsr305\1.3.9\jsr305-1.3.9.jar;C:\Users\ZNV\.m2\repository\org\apache\zookeeper\zookeeper\3.4.6\zookeeper-3.4.6.jar;C:\Users\ZNV\.m2\repository\io\netty\netty\3.7.0.Final\netty-3.7.0.Final.jar;C:\Users\ZNV\.m2\repository\org\apache\commons\commons-compress\1.4.1\commons-compress-1.4.1.jar;C:\Users\ZNV\.m2\repository\org\tukaani\xz\1.0\xz-1.0.jar;C:\Users\ZNV\.m2\repository\org\apache\phoenix\phoenix-client\4.9.0-HBase-1.1\phoenix-client-4.9.0-HBase-1.1.jar;C:\Users\ZNV\.m2\repository\org\apache\poi\poi-ooxml\3.9\poi-ooxml-3.9.jar;C:\Users\ZNV\.m2\repository\org\apache\poi\poi\3.9\poi-3.9.jar;C:\Users\ZNV\.m2\repository\org\apache\poi\poi-ooxml-schemas\3.9\poi-ooxml-schemas-3.9.jar;C:\Users\ZNV\.m2\repository\org\apache\xmlbeans\xmlbeans\2.3.0\xmlbeans-2.3.0.jar;C:\Users\ZNV\.m2\repository\stax\stax-api\1.0.1\stax-api-1.0.1.jar;C:\Users\ZNV\.m2\repository\dom4j\dom4j\1.6.1\dom4j-1.6.1.jar;C:\Users\ZNV\.m2\repository\xml-apis\xml-apis\1.0.b2\xml-apis-1.0.b2.jar;C:\Users\ZNV\.m2\repository\commons-fileupload\commons-fileupload\1.3.1\commons-fileupload-1.3.1.jar;C:\Users\ZNV\.m2\repository\net\sourceforge\jexcelapi\jxl\2.6.10\jxl-2.6.10.jar;C:\Users\ZNV\.m2\repository\com\znv\kafka\kafka-clients\0.0.1\kafka-clients-0.0.1.jar;D:\Intellij IDEA\IntelliJ IDEA 2017.2.5\lib\idea_rt.jar
+2018-05-16 15:42:06 INFO  ZooKeeper:100 - Client environment:java.library.path=D:\Program Files\Java\jdk1.8.0_131\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:\maven\apache-maven-3.5.0\bin;D:\Program Files\Java\jdk1.8.0_131\bin;D:\Program Files\Java\jdk1.8.0_131\jre\bin;C:\Program Files (x86)\Common Files\NetSarang;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files\EsafeNet\Cobra DocGuard Client;C:\\Windows\\system32\\bin;C:\\Windows\\system32\\bin;C:\\Windows\\system32\\bin;C:\\Windows\\system32\\bin;D:\SVN\svn\bin;C:\Python27;C:\Python27\Scripts;E:\nodejs\;D:\Git\Git\cmd;D;\Git\Git\bin;C:\Program Files\EsafeNet\Cobra DocGuard Client;C:\Users\ZNV\AppData\Roaming\npm;.
+2018-05-16 15:42:06 INFO  ZooKeeper:100 - Client environment:java.io.tmpdir=C:\Users\ZNV\AppData\Local\Temp\
+2018-05-16 15:42:06 INFO  ZooKeeper:100 - Client environment:java.compiler=<NA>
+2018-05-16 15:42:06 INFO  ZooKeeper:100 - Client environment:os.name=Windows 7
+2018-05-16 15:42:06 INFO  ZooKeeper:100 - Client environment:os.arch=amd64
+2018-05-16 15:42:06 INFO  ZooKeeper:100 - Client environment:os.version=6.1
+2018-05-16 15:42:06 INFO  ZooKeeper:100 - Client environment:user.name=ZNV
+2018-05-16 15:42:06 INFO  ZooKeeper:100 - Client environment:user.home=C:\Users\ZNV
+2018-05-16 15:42:06 INFO  ZooKeeper:100 - Client environment:user.dir=E:\上海、\htm出差\WriteData
+2018-05-16 15:42:06 INFO  ZooKeeper:438 - Initiating client connection, connectString=lv120.dct-znv.com:2181 sessionTimeout=90000 watcher=hconnection-0x729679060x0, quorum=lv120.dct-znv.com:2181, baseZNode=/hbase
+2018-05-16 15:42:06 INFO  ClientCnxn:975 - Opening socket connection to server lv120.dct-znv.com/10.45.157.120:2181. Will not attempt to authenticate using SASL (unknown error)
+2018-05-16 15:42:06 INFO  ClientCnxn:852 - Socket connection established to lv120.dct-znv.com/10.45.157.120:2181, initiating session
+2018-05-16 15:42:06 INFO  ClientCnxn:1235 - Session establishment complete on server lv120.dct-znv.com/10.45.157.120:2181, sessionid = 0x1636076e4572c46, negotiated timeout = 60000
+2018-05-16 15:42:07 INFO  Metrics:44 - Initializing metrics system: phoenix
+2018-05-16 15:42:07 WARN  MetricsConfig:124 - Cannot locate configuration: tried hadoop-metrics2-phoenix.properties,hadoop-metrics2.properties
+2018-05-16 15:42:07 INFO  MetricsSystemImpl:345 - Scheduled snapshot period at 10 second(s).
+2018-05-16 15:42:07 INFO  MetricsSystemImpl:184 - phoenix metrics system started
+2018-05-16 15:42:08 INFO  Initial:51 - 	load phoenix OK!
+2018-05-16 15:42:08 INFO  Initial:61 - ##### load xml file: E:\personlist.xml
+2018-05-16 15:42:08 INFO  Initial:80 - 	table name: ZHX.FSS_PERSONLIST_0516
+2018-05-16 15:42:08 INFO  Initial:81 - 	lib id: 1
+2018-05-16 15:42:08 INFO  Initial:82 - 	person lib type: 0
+2018-05-16 15:42:08 INFO  Initial:83 - 	pic path: E:\上海、\htm出差\face1
+2018-05-16 15:42:08 INFO  Initial:87 - 	xlsx path: E:\上海、\htm出差\person1.xlsx
+2018-05-16 15:42:08 INFO  Initial:97 - 	mapping: {country=country, person_img=person_img, person_img2=person_img2, nation=nation, community_name=community_name, sex=sex, person_img3=person_img3, birth=birth, room_number=room_number, person_name=person_name, nature_residence=nature_residence, card_id=card_id, control_person_id=control_person_id, image_name=image_name, community_id=community_id, door_open=door_open, control_event_id=control_event_id, positive_url=positive_url, control_community_id=control_community_id, tel=tel, comment=comment, addr=addr, negative_url=negative_url}
+2018-05-16 15:42:08 INFO  Initial:99 - 	load xml file OK!
+2018-05-16 15:42:08 INFO  ReadExcelUtilsGet:617 - ##### load feature file: E:\上海、\htm出差\face1\feature.json
+2018-05-16 15:42:08 INFO  ReadExcelUtilsGet:634 - 	feature file not exists...
+2018-05-16 15:42:08 INFO  ReadExcelUtilsGet:635 - 	start get feature...
+2018-05-16 15:42:09 INFO  ReadExcelUtilsGet:169 - batchNum: 30, totalSize: 236
+2018-05-16 15:42:09 INFO  ReadExcelUtilsGet:174 - face server url: http://10.45.157.114:9001/verify/feature/batchGet
+2018-05-16 15:42:19 INFO  ReadExcelUtilsGet:638 - 	json to string...
+2018-05-16 15:42:19 INFO  ReadExcelUtilsGet:640 - 	write to file...
+2018-05-16 15:42:19 INFO  ReadExcelUtilsGet:643 - 	load feature file OK!
+2018-05-16 15:42:19 INFO  ReadExcelUtilsGet:649 - ##### load all feature count: 236
+2018-05-16 15:42:19 INFO  ReadExcelUtilsGet:61 - ##### load excel file: E:\上海、\htm出差\person1.xlsx
+2018-05-16 15:42:20 ERROR ReadExcelUtilsGet:74 - 	load excel file OK!
+2018-05-16 15:42:20 INFO  ReadExcelUtilsGet:240 - 	excel row count: 224
+2018-05-16 15:42:20 INFO  ReadExcelUtilsGet:96 - ##### create log file: E:\上海、\htm出差\WriteData\失败记录_person1.xlsx_2018-05-16 15-42-20.txt
+2018-05-16 15:42:20 INFO  ReadExcelUtilsGet:106 - 	create log file OK!
+2018-05-16 15:42:20 INFO  ReadExcelUtilsGet:247 - ##### send to phoenix...
+2018-05-16 15:42:20 INFO  ReadExcelUtilsGet:264 - 	create time: 2018-05-16 15:42:20
+2018-05-16 15:42:20 INFO  ReadExcelUtilsGet:265 - 	start time: 2018-05-16 00:00:00
+2018-05-16 15:42:20 INFO  ReadExcelUtilsGet:266 - 	end time: 2028-05-16 23:59:50
+2018-05-16 15:42:24 INFO  ReadExcelUtilsGet:509 - ##### record count: 224, succ count: 210, error count: 14
+2018-05-16 15:42:24 INFO  Initial:111 - close connection pool...
+2018-05-16 15:42:33 INFO  Initial:35 - #################### batch import start ####################
+2018-05-16 15:42:33 INFO  Initial:46 - ##### load phoenix: jdbc:phoenix:lv120.dct-znv.com:2181:/hbase
+2018-05-16 15:42:34 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2018-05-16 15:42:34 ERROR Shell:373 - Failed to locate the winutils binary in the hadoop binary path
+java.io.IOException: Could not locate executable null\bin\winutils.exe in the Hadoop binaries.
+	at org.apache.hadoop.util.Shell.getQualifiedBinPath(Shell.java:355)
+	at org.apache.hadoop.util.Shell.getWinUtilsPath(Shell.java:370)
+	at org.apache.hadoop.util.Shell.<clinit>(Shell.java:363)
+	at org.apache.hadoop.util.StringUtils.<clinit>(StringUtils.java:78)
+	at org.apache.hadoop.security.Groups.parseStaticMapping(Groups.java:93)
+	at org.apache.hadoop.security.Groups.<init>(Groups.java:77)
+	at org.apache.hadoop.security.Groups.getUserToGroupsMappingService(Groups.java:240)
+	at org.apache.hadoop.security.UserGroupInformation.initialize(UserGroupInformation.java:257)
+	at org.apache.hadoop.security.UserGroupInformation.ensureInitialized(UserGroupInformation.java:234)
+	at org.apache.hadoop.security.UserGroupInformation.loginUserFromSubject(UserGroupInformation.java:749)
+	at org.apache.hadoop.security.UserGroupInformation.getLoginUser(UserGroupInformation.java:734)
+	at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:607)
+	at org.apache.hadoop.hbase.security.User$SecureHadoopUser.<init>(User.java:286)
+	at org.apache.hadoop.hbase.security.User$SecureHadoopUser.<init>(User.java:282)
+	at org.apache.hadoop.hbase.security.User.getCurrent(User.java:185)
+	at org.apache.phoenix.jdbc.PhoenixEmbeddedDriver$ConnectionInfo.<init>(PhoenixEmbeddedDriver.java:429)
+	at org.apache.phoenix.jdbc.PhoenixEmbeddedDriver$ConnectionInfo.create(PhoenixEmbeddedDriver.java:288)
+	at org.apache.phoenix.jdbc.PhoenixDriver.getConnectionQueryServices(PhoenixDriver.java:213)
+	at org.apache.phoenix.jdbc.PhoenixEmbeddedDriver.createConnection(PhoenixEmbeddedDriver.java:147)
+	at org.apache.phoenix.jdbc.PhoenixDriver.connect(PhoenixDriver.java:202)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:208)
+	at com.znv.fss.ExcelToPhoenix.utils.ConnectionPool.newConnection(ConnectionPool.java:175)
+	at com.znv.fss.ExcelToPhoenix.utils.ConnectionPool.createConnections(ConnectionPool.java:153)
+	at com.znv.fss.ExcelToPhoenix.utils.ConnectionPool.createPool(ConnectionPool.java:131)
+	at com.znv.fss.ExcelToPhoenix.Initial.main(Initial.java:49)
+2018-05-16 15:42:34 INFO  RecoverableZooKeeper:120 - Process identifier=hconnection-0x72967906 connecting to ZooKeeper ensemble=lv120.dct-znv.com:2181
+2018-05-16 15:42:35 INFO  ZooKeeper:100 - Client environment:zookeeper.version=3.4.6-1569965, built on 02/20/2014 09:09 GMT
+2018-05-16 15:42:35 INFO  ZooKeeper:100 - Client environment:host.name=10.45.144.183
+2018-05-16 15:42:35 INFO  ZooKeeper:100 - Client environment:java.version=1.8.0_131
+2018-05-16 15:42:35 INFO  ZooKeeper:100 - Client environment:java.vendor=Oracle Corporation
+2018-05-16 15:42:35 INFO  ZooKeeper:100 - Client environment:java.home=D:\Program Files\Java\jdk1.8.0_131\jre
+2018-05-16 15:42:35 INFO  ZooKeeper:100 - Client environment:java.class.path=D:\Program Files\Java\jdk1.8.0_131\jre\lib\charsets.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\deploy.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\access-bridge-64.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\cldrdata.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\dnsns.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\jaccess.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\jfxrt.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\localedata.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\nashorn.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\sunec.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\sunjce_provider.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\sunmscapi.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\sunpkcs11.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\ext\zipfs.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\javaws.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\jce.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\jfr.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\jfxswt.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\jsse.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\management-agent.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\plugin.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\resources.jar;D:\Program Files\Java\jdk1.8.0_131\jre\lib\rt.jar;E:\上海、\htm出差\WriteData\target\classes;C:\Users\ZNV\.m2\repository\com\alibaba\fastjson\1.2.4\fastjson-1.2.4.jar;C:\Users\ZNV\.m2\repository\org\apache\httpcomponents\httpmime\4.5.2\httpmime-4.5.2.jar;C:\Users\ZNV\.m2\repository\org\apache\httpcomponents\httpclient\4.5.2\httpclient-4.5.2.jar;C:\Users\ZNV\.m2\repository\org\apache\httpcomponents\httpcore\4.4.4\httpcore-4.4.4.jar;C:\Users\ZNV\.m2\repository\org\apache\hadoop\hadoop-common\2.5.1\hadoop-common-2.5.1.jar;C:\Users\ZNV\.m2\repository\org\apache\hadoop\hadoop-annotations\2.5.1\hadoop-annotations-2.5.1.jar;D:\Program Files\Java\jdk1.8.0_131\lib\tools.jar;C:\Users\ZNV\.m2\repository\com\google\guava\guava\11.0.2\guava-11.0.2.jar;C:\Users\ZNV\.m2\repository\commons-cli\commons-cli\1.2\commons-cli-1.2.jar;C:\Users\ZNV\.m2\repository\org\apache\commons\commons-math3\3.1.1\commons-math3-3.1.1.jar;C:\Users\ZNV\.m2\repository\xmlenc\xmlenc\0.52\xmlenc-0.52.jar;C:\Users\ZNV\.m2\repository\commons-codec\commons-codec\1.4\commons-codec-1.4.jar;C:\Users\ZNV\.m2\repository\commons-io\commons-io\2.4\commons-io-2.4.jar;C:\Users\ZNV\.m2\repository\commons-net\commons-net\3.1\commons-net-3.1.jar;C:\Users\ZNV\.m2\repository\commons-collections\commons-collections\3.2.1\commons-collections-3.2.1.jar;C:\Users\ZNV\.m2\repository\javax\servlet\servlet-api\2.5\servlet-api-2.5.jar;C:\Users\ZNV\.m2\repository\org\mortbay\jetty\jetty\6.1.26\jetty-6.1.26.jar;C:\Users\ZNV\.m2\repository\org\mortbay\jetty\jetty-util\6.1.26\jetty-util-6.1.26.jar;C:\Users\ZNV\.m2\repository\com\sun\jersey\jersey-core\1.9\jersey-core-1.9.jar;C:\Users\ZNV\.m2\repository\com\sun\jersey\jersey-json\1.9\jersey-json-1.9.jar;C:\Users\ZNV\.m2\repository\org\codehaus\jettison\jettison\1.1\jettison-1.1.jar;C:\Users\ZNV\.m2\repository\com\sun\xml\bind\jaxb-impl\2.2.3-1\jaxb-impl-2.2.3-1.jar;C:\Users\ZNV\.m2\repository\javax\xml\bind\jaxb-api\2.2.2\jaxb-api-2.2.2.jar;C:\Users\ZNV\.m2\repository\javax\xml\stream\stax-api\1.0-2\stax-api-1.0-2.jar;C:\Users\ZNV\.m2\repository\javax\activation\activation\1.1\activation-1.1.jar;C:\Users\ZNV\.m2\repository\org\codehaus\jackson\jackson-jaxrs\1.8.3\jackson-jaxrs-1.8.3.jar;C:\Users\ZNV\.m2\repository\org\codehaus\jackson\jackson-xc\1.8.3\jackson-xc-1.8.3.jar;C:\Users\ZNV\.m2\repository\com\sun\jersey\jersey-server\1.9\jersey-server-1.9.jar;C:\Users\ZNV\.m2\repository\asm\asm\3.1\asm-3.1.jar;C:\Users\ZNV\.m2\repository\tomcat\jasper-compiler\5.5.23\jasper-compiler-5.5.23.jar;C:\Users\ZNV\.m2\repository\tomcat\jasper-runtime\5.5.23\jasper-runtime-5.5.23.jar;C:\Users\ZNV\.m2\repository\javax\servlet\jsp\jsp-api\2.1\jsp-api-2.1.jar;C:\Users\ZNV\.m2\repository\commons-el\commons-el\1.0\commons-el-1.0.jar;C:\Users\ZNV\.m2\repository\commons-logging\commons-logging\1.1.3\commons-logging-1.1.3.jar;C:\Users\ZNV\.m2\repository\log4j\log4j\1.2.17\log4j-1.2.17.jar;C:\Users\ZNV\.m2\repository\net\java\dev\jets3t\jets3t\0.9.0\jets3t-0.9.0.jar;C:\Users\ZNV\.m2\repository\com\jamesmurty\utils\java-xmlbuilder\0.4\java-xmlbuilder-0.4.jar;C:\Users\ZNV\.m2\repository\commons-lang\commons-lang\2.6\commons-lang-2.6.jar;C:\Users\ZNV\.m2\repository\commons-configuration\commons-configuration\1.6\commons-configuration-1.6.jar;C:\Users\ZNV\.m2\repository\commons-digester\commons-digester\1.8\commons-digester-1.8.jar;C:\Users\ZNV\.m2\repository\commons-beanutils\commons-beanutils\1.7.0\commons-beanutils-1.7.0.jar;C:\Users\ZNV\.m2\repository\commons-beanutils\commons-beanutils-core\1.8.0\commons-beanutils-core-1.8.0.jar;C:\Users\ZNV\.m2\repository\org\slf4j\slf4j-api\1.7.5\slf4j-api-1.7.5.jar;C:\Users\ZNV\.m2\repository\org\slf4j\slf4j-log4j12\1.7.5\slf4j-log4j12-1.7.5.jar;C:\Users\ZNV\.m2\repository\org\codehaus\jackson\jackson-core-asl\1.9.13\jackson-core-asl-1.9.13.jar;C:\Users\ZNV\.m2\repository\org\codehaus\jackson\jackson-mapper-asl\1.9.13\jackson-mapper-asl-1.9.13.jar;C:\Users\ZNV\.m2\repository\org\apache\avro\avro\1.7.4\avro-1.7.4.jar;C:\Users\ZNV\.m2\repository\com\thoughtworks\paranamer\paranamer\2.3\paranamer-2.3.jar;C:\Users\ZNV\.m2\repository\org\xerial\snappy\snappy-java\1.0.4.1\snappy-java-1.0.4.1.jar;C:\Users\ZNV\.m2\repository\com\google\protobuf\protobuf-java\2.5.0\protobuf-java-2.5.0.jar;C:\Users\ZNV\.m2\repository\org\apache\hadoop\hadoop-auth\2.5.1\hadoop-auth-2.5.1.jar;C:\Users\ZNV\.m2\repository\org\apache\directory\server\apacheds-kerberos-codec\2.0.0-M15\apacheds-kerberos-codec-2.0.0-M15.jar;C:\Users\ZNV\.m2\repository\org\apache\directory\server\apacheds-i18n\2.0.0-M15\apacheds-i18n-2.0.0-M15.jar;C:\Users\ZNV\.m2\repository\org\apache\directory\api\api-asn1-api\1.0.0-M20\api-asn1-api-1.0.0-M20.jar;C:\Users\ZNV\.m2\repository\org\apache\directory\api\api-util\1.0.0-M20\api-util-1.0.0-M20.jar;C:\Users\ZNV\.m2\repository\com\jcraft\jsch\0.1.42\jsch-0.1.42.jar;C:\Users\ZNV\.m2\repository\com\google\code\findbugs\jsr305\1.3.9\jsr305-1.3.9.jar;C:\Users\ZNV\.m2\repository\org\apache\zookeeper\zookeeper\3.4.6\zookeeper-3.4.6.jar;C:\Users\ZNV\.m2\repository\io\netty\netty\3.7.0.Final\netty-3.7.0.Final.jar;C:\Users\ZNV\.m2\repository\org\apache\commons\commons-compress\1.4.1\commons-compress-1.4.1.jar;C:\Users\ZNV\.m2\repository\org\tukaani\xz\1.0\xz-1.0.jar;C:\Users\ZNV\.m2\repository\org\apache\phoenix\phoenix-client\4.9.0-HBase-1.1\phoenix-client-4.9.0-HBase-1.1.jar;C:\Users\ZNV\.m2\repository\org\apache\poi\poi-ooxml\3.9\poi-ooxml-3.9.jar;C:\Users\ZNV\.m2\repository\org\apache\poi\poi\3.9\poi-3.9.jar;C:\Users\ZNV\.m2\repository\org\apache\poi\poi-ooxml-schemas\3.9\poi-ooxml-schemas-3.9.jar;C:\Users\ZNV\.m2\repository\org\apache\xmlbeans\xmlbeans\2.3.0\xmlbeans-2.3.0.jar;C:\Users\ZNV\.m2\repository\stax\stax-api\1.0.1\stax-api-1.0.1.jar;C:\Users\ZNV\.m2\repository\dom4j\dom4j\1.6.1\dom4j-1.6.1.jar;C:\Users\ZNV\.m2\repository\xml-apis\xml-apis\1.0.b2\xml-apis-1.0.b2.jar;C:\Users\ZNV\.m2\repository\commons-fileupload\commons-fileupload\1.3.1\commons-fileupload-1.3.1.jar;C:\Users\ZNV\.m2\repository\net\sourceforge\jexcelapi\jxl\2.6.10\jxl-2.6.10.jar;C:\Users\ZNV\.m2\repository\com\znv\kafka\kafka-clients\0.0.1\kafka-clients-0.0.1.jar;D:\Intellij IDEA\IntelliJ IDEA 2017.2.5\lib\idea_rt.jar
+2018-05-16 15:42:35 INFO  ZooKeeper:100 - Client environment:java.library.path=D:\Program Files\Java\jdk1.8.0_131\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:\maven\apache-maven-3.5.0\bin;D:\Program Files\Java\jdk1.8.0_131\bin;D:\Program Files\Java\jdk1.8.0_131\jre\bin;C:\Program Files (x86)\Common Files\NetSarang;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files\EsafeNet\Cobra DocGuard Client;C:\\Windows\\system32\\bin;C:\\Windows\\system32\\bin;C:\\Windows\\system32\\bin;C:\\Windows\\system32\\bin;D:\SVN\svn\bin;C:\Python27;C:\Python27\Scripts;E:\nodejs\;D:\Git\Git\cmd;D;\Git\Git\bin;C:\Program Files\EsafeNet\Cobra DocGuard Client;C:\Users\ZNV\AppData\Roaming\npm;.
+2018-05-16 15:42:35 INFO  ZooKeeper:100 - Client environment:java.io.tmpdir=C:\Users\ZNV\AppData\Local\Temp\
+2018-05-16 15:42:35 INFO  ZooKeeper:100 - Client environment:java.compiler=<NA>
+2018-05-16 15:42:35 INFO  ZooKeeper:100 - Client environment:os.name=Windows 7
+2018-05-16 15:42:35 INFO  ZooKeeper:100 - Client environment:os.arch=amd64
+2018-05-16 15:42:35 INFO  ZooKeeper:100 - Client environment:os.version=6.1
+2018-05-16 15:42:35 INFO  ZooKeeper:100 - Client environment:user.name=ZNV
+2018-05-16 15:42:35 INFO  ZooKeeper:100 - Client environment:user.home=C:\Users\ZNV
+2018-05-16 15:42:35 INFO  ZooKeeper:100 - Client environment:user.dir=E:\上海、\htm出差\WriteData
+2018-05-16 15:42:35 INFO  ZooKeeper:438 - Initiating client connection, connectString=lv120.dct-znv.com:2181 sessionTimeout=90000 watcher=hconnection-0x729679060x0, quorum=lv120.dct-znv.com:2181, baseZNode=/hbase
+2018-05-16 15:42:35 INFO  ClientCnxn:975 - Opening socket connection to server lv120.dct-znv.com/10.45.157.120:2181. Will not attempt to authenticate using SASL (unknown error)
+2018-05-16 15:42:35 INFO  ClientCnxn:852 - Socket connection established to lv120.dct-znv.com/10.45.157.120:2181, initiating session
+2018-05-16 15:42:35 INFO  ClientCnxn:1235 - Session establishment complete on server lv120.dct-znv.com/10.45.157.120:2181, sessionid = 0x1636076e4572c47, negotiated timeout = 60000
+2018-05-16 15:42:37 INFO  Metrics:44 - Initializing metrics system: phoenix
+2018-05-16 15:42:37 WARN  MetricsConfig:124 - Cannot locate configuration: tried hadoop-metrics2-phoenix.properties,hadoop-metrics2.properties
+2018-05-16 15:42:37 INFO  MetricsSystemImpl:345 - Scheduled snapshot period at 10 second(s).
+2018-05-16 15:42:37 INFO  MetricsSystemImpl:184 - phoenix metrics system started
+2018-05-16 15:42:38 INFO  Initial:51 - 	load phoenix OK!
+2018-05-16 15:42:38 INFO  Initial:61 - ##### load xml file: E:\personlist.xml
+2018-05-16 15:42:38 INFO  Initial:80 - 	table name: ZHX.FSS_PERSONLIST_0516
+2018-05-16 15:42:38 INFO  Initial:81 - 	lib id: 1
+2018-05-16 15:42:38 INFO  Initial:82 - 	person lib type: 0
+2018-05-16 15:42:38 INFO  Initial:83 - 	pic path: E:\上海、\htm出差\face1
+2018-05-16 15:42:38 INFO  Initial:87 - 	xlsx path: E:\上海、\htm出差\person1.xlsx
+2018-05-16 15:42:38 INFO  Initial:97 - 	mapping: {country=country, person_img=person_img, person_img2=person_img2, nation=nation, community_name=community_name, sex=sex, person_img3=person_img3, birth=birth, room_number=room_number, person_name=person_name, nature_residence=nature_residence, card_id=card_id, control_person_id=control_person_id, image_name=image_name, community_id=community_id, door_open=door_open, control_event_id=control_event_id, positive_url=positive_url, control_community_id=control_community_id, tel=tel, comment=comment, addr=addr, negative_url=negative_url}
+2018-05-16 15:42:38 INFO  Initial:99 - 	load xml file OK!
+2018-05-16 15:42:38 INFO  ReadExcelUtilsGet:617 - ##### load feature file: E:\上海、\htm出差\face1\feature.json
+2018-05-16 15:42:38 INFO  ReadExcelUtilsGet:620 - 	feature file exists ...
+2018-05-16 15:42:38 INFO  ReadExcelUtilsGet:625 - 	start read...
+2018-05-16 15:42:38 INFO  ReadExcelUtilsGet:627 - 	parse to json object...
+2018-05-16 15:42:38 INFO  ReadExcelUtilsGet:629 - 	load feature file OK!
+2018-05-16 15:42:38 INFO  ReadExcelUtilsGet:649 - ##### load all feature count: 236
+2018-05-16 15:42:38 INFO  ReadExcelUtilsGet:61 - ##### load excel file: E:\上海、\htm出差\person1.xlsx
+2018-05-16 15:42:39 ERROR ReadExcelUtilsGet:74 - 	load excel file OK!
+2018-05-16 15:42:39 INFO  ReadExcelUtilsGet:240 - 	excel row count: 224
+2018-05-16 15:42:39 INFO  ReadExcelUtilsGet:96 - ##### create log file: E:\上海、\htm出差\WriteData\失败记录_person1.xlsx_2018-05-16 15-42-39.txt
+2018-05-16 15:42:39 INFO  ReadExcelUtilsGet:106 - 	create log file OK!
+2018-05-16 15:42:39 INFO  ReadExcelUtilsGet:247 - ##### send to phoenix...
+2018-05-16 15:42:39 INFO  ReadExcelUtilsGet:264 - 	create time: 2018-05-16 15:42:39
+2018-05-16 15:42:39 INFO  ReadExcelUtilsGet:265 - 	start time: 2018-05-16 00:00:00
+2018-05-16 15:42:39 INFO  ReadExcelUtilsGet:266 - 	end time: 2028-05-16 23:59:50
+2018-05-16 15:42:43 INFO  ReadExcelUtilsGet:509 - ##### record count: 224, succ count: 210, error count: 14
+2018-05-16 15:42:43 INFO  Initial:111 - close connection pool...

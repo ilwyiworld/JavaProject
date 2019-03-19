@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<assembly>
+    <id>assembly</id>
+    <formats>
+        <format>jar</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>/</outputDirectory>
+            <useProjectArtifact>false</useProjectArtifact>
+            <unpack>true</unpack>
+            <excludes>
+                <exclude>com.znv:fss-common</exclude>
+                <exclude>com.znv:es-search-client</exclude>
+                <exclude>com.znv:hbase-custom-coprocessor</exclude>
+                <exclude>com.znv:hbase-search-client</exclude>
+                <exclude>com.znv:phoenix-search-client</exclude>
+            </excludes>
+        </dependencySet>
+    </dependencySets>
+</assembly>

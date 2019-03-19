@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>fss-search-sdk</artifactId>
+        <groupId>com.znv</groupId>
+        <version>1.20.003-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>fss-search-client</artifactId>
+    <packaging>pom</packaging>
+    <name>FSS Search Client</name>
+
+    <modules>
+        <module>es-search-client</module>
+        <module>hbase-search-client</module>
+        <module>phoenix-search-client</module>
+        <module>fss-search-pack</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.znv</groupId>
+            <artifactId>fss-common</artifactId>
+        </dependency>
+    </dependencies>
+
+
+</project>

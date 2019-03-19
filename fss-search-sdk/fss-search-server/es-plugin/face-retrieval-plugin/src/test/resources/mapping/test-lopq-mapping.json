@@ -1,0 +1,33 @@
+{
+    "test": {
+        "_source": {
+            "excludes": []
+        }, "_all": {
+            "enabled": false
+        },
+        "_field_names": {
+            "enabled": false
+        },
+        "properties": {
+            "rt_feature.lopq.feature": {
+                "type": "binary",
+                "index": false,
+                "doc_values": true
+            },
+            "rt_feature.lopq.coarse_id": {
+                                "type": "keyword",
+                                "index": "not_analyzed",
+                                "doc_values": true
+                            },
+            "rt_feature.lopq.fine_id":{
+                                "type":"keyword",
+                                "index": "not_analyzed",
+                                "doc_values": true
+                            }
+        }
+    }
+}
+
+
+
+

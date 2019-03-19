@@ -1,0 +1,38 @@
+option java_package = "com.znv.hbase.protobuf.generated";
+option java_outer_classname = "ImageSearchProtos";
+option java_generic_services = true;
+option java_generate_equals_and_hash = true;
+option optimize_for = SPEED;
+
+message ImageSearchRequest {
+    repeated string imageFeature = 1; //图片特征
+    //repeated string searchFeatures = 1;
+    required float threshold = 2; //相似度阈值
+    repeated string cameraId = 3; //多个cameraId
+    required string startTime = 4; //开始时间
+    required string endTime = 5; //结束时间
+    required string searchType = 6; //查询类型，1-以脸搜脸 ,2-人物关系查询, 3-轨迹
+    required string selType = 7; //交并集选择，1-交集， 2-并集
+    repeated string officeId = 9; //多个officeId
+}
+
+message ImageSearchResponse {
+    repeated ImageSearchOut pictureSet = 1; //根据相似度排序后的图片List
+}
+
+message ImageSearchOut {
+    optional float sim = 1; //图片相似度
+    optional bytes rowKey = 2; //hbase查询符合条件的rowkey
+    optional string cameraId = 3; //摄像头Id
+    optional string enterTime = 4; //进入时间
+    optional string leaveTime = 5; //离开时间
+    optional int64 durationTime = 6; //持续时长
+    optional float gpsx = 7;
+    optional float gpsy = 8;
+    optional string uuid = 9; // [estine] uuid
+    optional string cameraName = 10; // [estine] cameraName
+}
+
+service ImageSearchService {
+    rpc getImageSearchResult (ImageSearchRequest) returns (ImageSearchResponse);
+}

@@ -1,0 +1,49 @@
+option java_package = "com.znv.hbase.protobuf.generated";
+option java_outer_classname = "StayTimeStatProtos";
+option java_generic_services = true;
+option java_generate_equals_and_hash = true;
+option optimize_for = SPEED;
+import "Scan.proto";
+
+message StayTimeStatRequest {
+    required Scan scan = 1;
+    required int32 size = 2; //返回top N 条数据
+    required float threshold = 3; //相似度阈值
+    required string startTime = 4;
+    required string endTime = 5;
+    optional string analysis = 6;
+}
+
+message StayTimeStatResponse {
+    repeated StayTimeStatOut results = 1;
+}
+
+message StayTimeStatOut {
+    required int64 stayTime = 1; //驻留时长
+    required bytes rowKey = 2; //rowkey
+    required bytes feature = 3; //特征值
+    optional string cameraId = 4;//摄像头id
+    optional string cameraName = 5;//摄像头id
+    optional string imgUrl = 6; //img_url
+}
+
+service StayTimeStatService {
+    rpc getStayTimeStatResult (StayTimeStatRequest) returns (StayTimeStatResponse);
+}
+
+//web新界面
+message StayTimeStatNewResponse {
+    repeated StayTimeMap results = 1;
+}
+
+message StayTimeMap {
+    required int64 stayTime = 1; //驻留时长
+    required bytes rowKey = 2; //rowkey
+    required bytes feature = 3; //特征值
+    required string cameraId = 4; //摄像头id
+    repeated StayTimeStatOut datas = 5;//这个人位于所有摄像头下的信息
+}
+
+service StayTimeStatNewService {
+    rpc getStayTimeStatNewResult (StayTimeStatRequest) returns (StayTimeStatNewResponse);
+}

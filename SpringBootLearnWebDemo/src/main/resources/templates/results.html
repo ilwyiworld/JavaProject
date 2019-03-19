@@ -1,0 +1,9 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+Congratulations! You are old enough to sign up for this site.
+</body>
+<h1>Result</h1>
+<p th:text="'name: ' + ${personForm.name}" />
+<p th:text="'age: ' + ${personForm.age}" />
+<a href="/form">Submit another message</a>
+</html>

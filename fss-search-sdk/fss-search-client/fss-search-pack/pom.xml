@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>fss-search-client</artifactId>
+        <groupId>com.znv</groupId>
+        <version>1.20.003-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>fss-search-pack</artifactId>
+    <name>FSS Search Client: Package</name>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.4.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>fss-search-client-${version}</finalName>
+                            <promoteTransitiveDependencies>true</promoteTransitiveDependencies>
+                            <artifactSet>
+                                <includes>
+                                    <include>com.znv:fss-common</include>
+                                    <include>com.znv:es-search-client</include>
+                                    <include>com.znv:hbase-custom-coprocessor</include>
+                                    <include>com.znv:hbase-search-client</include>
+                                    <include>com.znv:phoenix-search-client</include>
+                                </includes>
+                            </artifactSet>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                        <exclude>git.*</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <inherited>false</inherited>
+                <configuration>
+                    <skipAssembly>false</skipAssembly>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <finalName>fss-search-dependencies</finalName>
+                    <outputDirectory>${project.build.directory}/releases/</outputDirectory>
+                    <descriptors>
+                        <descriptor>assembly/assembly.xml</descriptor>
+                    </descriptors>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.znv</groupId>
+            <artifactId>es-search-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.znv</groupId>
+            <artifactId>hbase-search-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.znv</groupId>
+            <artifactId>phoenix-search-client</artifactId>
+        </dependency>
+    </dependencies>
+
+
+</project>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>fss-search-server</artifactId>
+        <groupId>com.znv</groupId>
+        <version>1.20.003-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>hbase-custom-coprocessor</artifactId>
+    <name>FSS Search Server: HBase custom coprocessor</name>
+    <properties>
+        <version.hbase>1.2.0-cdh5.11.0</version.hbase>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>compile-protoc</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <tasks>
+                                <path id="proto.path">
+                                    <fileset dir="${project.basedir}/src/main/protobuf">
+                                        <include name="/*.proto"/>
+                                    </fileset>
+                                </path>
+                                <pathconvert pathsep=" " property="proto.files"
+                                             refid="proto.path"/>
+                                <exec executable="${project.basedir}/tools/protoc">
+                                    <arg value="--java_out=${project.basedir}/src/main/java"/>
+                                    <arg value="-I${project.basedir}/src/main/protobuf"/>
+                                    <arg line="${proto.files}"/>
+                                </exec>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--<plugin>
+            <artifactId>maven-clean-plugin</artifactId>
+            <configuration>
+                <verbose>true</verbose>
+                <filesets>
+                    <fileset>
+                        <directory>${project.basedir}/src/main/java/com/znv/hbase/protobuf/generated</directory>
+                    </fileset>
+                </filesets>
+            </configuration>
+        </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.4.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <artifactSet>
+                                <includes>
+                                    <include>com.znv:fss-common</include>
+                                </includes>
+                            </artifactSet>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                        <exclude>git.*</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>${version.hbase}</version>
+            <!--<scope>provided</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-server</artifactId>
+            <!--<scope>provided</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <!--<scope>provided</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>com.znv</groupId>
+            <artifactId>fss-common</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+    </dependencies>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>thirdparty</id>
+            <url>http://10.45.144.149:8081/nexus/content/repositories/thirdparty</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>

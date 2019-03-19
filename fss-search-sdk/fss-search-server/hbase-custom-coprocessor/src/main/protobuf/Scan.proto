@@ -1,0 +1,54 @@
+option java_package = "com.znv.hbase.protobuf.generated";
+option java_outer_classname = "ScanProtos";
+option java_generate_equals_and_hash = true;
+option optimize_for = SPEED;
+
+import "HBase.proto";
+import "Filter.proto";
+import "Cell.proto";
+import "Comparator.proto";
+
+/**
+ * Container for a list of column qualifier names of a family.
+ */
+message Column {
+    required bytes family = 1;
+    repeated bytes qualifier = 2;
+}
+
+/**
+ * Consistency defines the expected consistency level for an operation.
+ */
+enum Consistency {
+    STRONG = 0;
+    TIMELINE = 1;
+}
+
+/**
+ * Instead of get from a table, you can scan it with optional filters.
+ * You can specify the row key range, time range, the columns/families
+ * to scan and so on.
+ *
+ * This scan is used the first time in a scan request. The response of
+ * the initial scan will return a scanner id, which should be used to
+ * fetch result batches later on before it is closed.
+ */
+message Scan {
+    repeated Column column = 1;
+    repeated NameBytesPair attribute = 2;
+    optional bytes start_row = 3;
+    optional bytes stop_row = 4;
+    optional Filter filter = 5;
+    optional TimeRange time_range = 6;
+    optional uint32 max_versions = 7 [default = 1];
+    optional bool cache_blocks = 8 [default = true];
+    optional uint32 batch_size = 9;
+    optional uint64 max_result_size = 10;
+    optional uint32 store_limit = 11;
+    optional uint32 store_offset = 12;
+    optional bool load_column_families_on_demand = 13; /* DO NOT add defaults to load_column_families_on_demand. */
+    optional bool small = 14;
+    optional bool reversed = 15 [default = false];
+    optional Consistency consistency = 16 [default = STRONG];
+    optional uint32 caching = 17;
+}

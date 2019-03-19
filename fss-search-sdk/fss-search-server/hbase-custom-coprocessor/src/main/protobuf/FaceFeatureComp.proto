@@ -1,0 +1,24 @@
+option java_package = "com.znv.hbase.protobuf.generated";
+option java_outer_classname = "FaceFeatureCompProtos";
+option java_generic_services = true;
+option java_generate_equals_and_hash = true;
+option optimize_for = SPEED;
+
+message FaceFeatureCompRequest {
+    required string imageFeature = 1; //图片特征
+    required float threshold = 2; //相似度阈值
+}
+
+message FaceFeatureCompResponse {
+    repeated FaceFeatureCompOut featureCompOut = 1; //根据相似度排序后的图片List
+    required bool isIdExist = 2; //标记是否存在符合条件的ID
+}
+
+message FaceFeatureCompOut {
+    required string id = 1; //对应id
+    required float sim = 2; //图片相似度
+}
+
+service FaceFeatureCompService {
+    rpc getFaceFeatureCompResult (FaceFeatureCompRequest) returns (FaceFeatureCompResponse);
+}

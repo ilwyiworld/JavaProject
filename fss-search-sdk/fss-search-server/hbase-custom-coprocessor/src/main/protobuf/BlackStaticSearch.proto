@@ -1,0 +1,23 @@
+option java_package = "com.znv.hbase.protobuf.generated";
+option java_outer_classname = "BlackStaticSearchProtos";
+option java_generic_services = true;
+option java_generate_equals_and_hash = true;
+option optimize_for = SPEED;
+
+message BlackStaticSearchRequest {
+    required string imageFeature = 1; //图片特征
+    required float threshold = 2; //相似度阈值
+}
+
+message BlackStaticSearchResponse {
+    repeated BlackStaticSearchOut pictureSet = 1; //根据相似度排序后的图片List
+}
+
+message BlackStaticSearchOut {
+    required float sim = 1; //图片相似度
+    required bytes rowKey = 2; //hbase查询符合条件的rowkey int型
+}
+
+service BlackStaticSearchService {
+    rpc getBlackStaticSearchResult (BlackStaticSearchRequest) returns (BlackStaticSearchResponse);
+}

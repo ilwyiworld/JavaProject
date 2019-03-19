@@ -1,0 +1,23 @@
+{
+    "test": {
+        "_source": {
+            "excludes": ["rt_image"]
+        },
+        "properties": {
+            "rt_feature": {
+                "type": "feature",
+                "hash": ["LSH"],
+                "index": false,
+                "doc_values": true
+            },
+            "name": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "rt_image": {
+                "type": "binary",
+                "index": false
+            }
+        }
+    }
+}

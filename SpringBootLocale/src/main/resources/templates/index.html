@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>玩转spring boot——国际化</title>
+</head>
+<body>
+	<h1>玩转spring boot——国际化</h1>
+	<br />
+	<a href="/?lang=en_US">English(US)</a>
+	<a href="/?lang=zh_CN">简体中文</a>
+	<br />
+    <!--#{}标签直接调用messages的内容，${}标签来获取后台的值-->
+	<h3 th:text="#{hello} + ' , ' + ${world}"></h3>
+	<br />
+	<br />
+</body>
+</html>

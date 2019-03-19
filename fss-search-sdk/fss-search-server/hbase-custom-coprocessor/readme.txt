@@ -1,0 +1,1 @@
+1. protoc.exe的版本必须与protobuf的依赖包版本一致，tools中与pom中的版本均为2.5.0

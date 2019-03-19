@@ -1,0 +1,38 @@
+{
+  "test": {
+    "_source": {
+      "excludes": []
+    },
+    "_all": {
+      "enabled": false
+    },
+    "_field_names": {
+      "enabled": false
+    },
+    "properties": {
+      "rt_feature": {
+        "type": "feature",
+        "hash": ["LSH"]
+      },
+      "name": {
+        "type": "keyword",
+        "index": "not_analyzed"
+      },
+      "feature_16d": {
+        "type": "binary",
+        "index": false,
+        "doc_values": true
+      },
+      "lsh_16s": {
+        "type": "keyword",
+        "index": "not_analyzed",
+        "doc_values": true
+      },
+      "lsh_16i": {
+        "type": "short",
+        "index": true,
+        "doc_values": true
+      }
+    }
+  }
+}
