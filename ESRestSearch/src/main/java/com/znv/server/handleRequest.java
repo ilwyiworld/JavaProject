@@ -8,8 +8,6 @@ import javax.ws.rs.core.MediaType;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.znv.BaseEsSearch;
-import com.znv.EsManager;
 import com.znv.servlet.initConnectionServlet;
 import com.znv.util.FeatureUtil;
 import com.znv.util.JdbcUtil;
@@ -114,9 +112,9 @@ public class handleRequest {
                 JSONObject result=new JSONObject();
                 LOGGER.info("处理门禁"+doorId+"POST请求开始...");
                 LOGGER.info(searchJson.toJSONString());
-                BaseEsSearch search= EsManager.createSearch(searchJson.toJSONString());
+                //BaseEsSearch search= EsManager.createSearch(searchJson.toJSONString());
                 try{
-                    result = search.getSearchResult(searchJson.toJSONString());
+                    //result = search.getSearchResult(searchJson.toJSONString());
                 }catch(Exception e){
                     LOGGER.error("查询门禁"+doorId+"数据失败",e.getMessage());
                     result.put("errorCode","QueryError");
@@ -182,9 +180,9 @@ public class handleRequest {
                 JSONObject result=new JSONObject();
                 LOGGER.info("处理抓拍机"+captureId+"POST请求开始...");
                 LOGGER.info(searchJson.toJSONString());
-                BaseEsSearch search= EsManager.createSearch(searchJson.toJSONString());
+                //BaseEsSearch search= EsManager.createSearch(searchJson.toJSONString());
                 try{
-                    result = search.getSearchResult(searchJson.toJSONString());
+                    //result = search.getSearchResult(searchJson.toJSONString());
                 }catch(Exception e){
                     LOGGER.error("查询抓拍机"+captureId+"数据失败",e.getMessage());
                     result.put("errorCode","QueryError");
@@ -277,9 +275,9 @@ public class handleRequest {
         JSONObject searchJson= new JSONObject();
         searchJson.put("params",JSON.parseObject(queryString));
         searchJson.put("id","13006");
-        BaseEsSearch search= EsManager.createSearch(searchJson.toJSONString());
+        //BaseEsSearch search= EsManager.createSearch(searchJson.toJSONString());
         try{
-            returnJson = search.getSearchResult(searchJson.toJSONString());
+            //returnJson = search.getSearchResult(searchJson.toJSONString());
         }catch(Exception e){
             LOGGER.error("查询分人入户数据失败",e.getMessage());
             returnJson.put("errorCode","QueryError");

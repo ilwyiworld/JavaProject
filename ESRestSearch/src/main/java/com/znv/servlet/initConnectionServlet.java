@@ -4,7 +4,6 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
-import com.znv.EsManager;
 import com.znv.util.ConnectionPool;
 import com.znv.util.PropertiesUtil;
 import org.apache.logging.log4j.LogManager;
@@ -27,7 +26,7 @@ public class initConnectionServlet extends HttpServlet {
         String hostUrl="";
         try{
             hostUrl= PropertiesUtil.getProperties("conf.properties").getProperty("hostUrl");
-            EsManager.initConnection(hostUrl);
+            //EsManager.initConnection(hostUrl);
             doorDeviceId=PropertiesUtil.getProperties("type.properties").getProperty("door.id").split(",");
             captureDeviceId=PropertiesUtil.getProperties("type.properties").getProperty("capture.id").split(",");
             LOGGER.info("初始化es成功");
