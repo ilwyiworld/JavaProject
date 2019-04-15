@@ -9,18 +9,21 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
+import java.net.*;
 import java.util.Enumeration;
+import java.util.Map;
 import java.util.zip.DeflaterOutputStream;
 import java.util.zip.GZIPOutputStream;
 
 import org.apache.commons.codec.binary.Base64;
 import sun.misc.BASE64Encoder;
 
+import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageOutputStream;
+import javax.swing.*;
 
 /**
  * Created by Administrator on 2018/2/27.
@@ -49,7 +52,7 @@ public class Main {
                 }
             }
         }*/
-        InputStream inputStream = null;
+        /*InputStream inputStream = null;
         byte[] data = null;
         try {
             inputStream = new FileInputStream("C:\\Users\\Administrator\\Desktop\\2.jpg");
@@ -77,7 +80,7 @@ public class Main {
         imageOutput.write(buf, 0, buf.length);
         imageOutput.close();// 关闭输入输出流
 
-        System.out.println(data3.length());
+        System.out.println(data3.length());*/
     }
 
     public static String getInnetIp() throws SocketException {
@@ -92,11 +95,11 @@ public class Main {
             Enumeration<InetAddress> address = ni.getInetAddresses();
             while (address.hasMoreElements()) {
                 ip = address.nextElement();
-                if (!ip.isSiteLocalAddress()&&!ip.isLoopbackAddress()&&ip.getHostAddress().indexOf(":") == -1){// 外网IP
+                if (!ip.isSiteLocalAddress() && !ip.isLoopbackAddress() && ip.getHostAddress().indexOf(":") == -1) {// 外网IP
                     netip = ip.getHostAddress();
                     finded = true;
                     break;
-                } else if (ip.isSiteLocalAddress()&&!ip.isLoopbackAddress()&&ip.getHostAddress().indexOf(":") == -1){// 内网IP
+                } else if (ip.isSiteLocalAddress() && !ip.isLoopbackAddress() && ip.getHostAddress().indexOf(":") == -1) {// 内网IP
                     localip = ip.getHostAddress();
                 }
             }
@@ -121,6 +124,7 @@ public class Main {
 
         return null;
     }
+
 }
 
 
