@@ -16,7 +16,7 @@
         <module>MyShopServiceContentProvider</module>
         <module>MyShopServiceContentConsumer</module>
         <module>MyShopApiGateway</module>
-        <module>MyshopServiceUpload</module>
+        <module>MyShopServiceUpload</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
