@@ -1,9 +1,16 @@
 package main;
 
+import ch.ethz.ssh2.Connection;
+import ch.ethz.ssh2.SCPClient;
+import ch.ethz.ssh2.Session;
+import ch.ethz.ssh2.StreamGobbler;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.SftpException;
 import net.coobird.thumbnailator.Thumbnails;
+import org.apache.commons.io.IOUtils;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
@@ -13,8 +20,14 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.*;
+import java.nio.charset.Charset;
+import java.text.DecimalFormat;
 import java.util.Enumeration;
 import java.util.Map;
+import java.util.Vector;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.zip.DeflaterOutputStream;
 import java.util.zip.GZIPOutputStream;
 
@@ -29,7 +42,25 @@ import javax.swing.*;
  * Created by Administrator on 2018/2/27.
  */
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception{
+        //execCommend("nvidia-smi -L","10.10.1.82",22,"ubuntu","cimevue");
+        ByteArrayOutputStream bos=new ByteArrayOutputStream();
+        getFile(bos,"/root/config.json",
+                "10.10.1.163",22,"root","root" );
+        JSONObject obj= JSON.parseObject(new String(bos.toByteArray(), "UTF-8"));
+        System.out.println(obj);
+        obj.put("test","test");
+        putFile(obj.toJSONString().getBytes(),"config.json","/root","10.10.1.163",22,"root","root");
+        /*DecimalFormat df = new DecimalFormat("#.000");
+        float test=(float)4/3;
+        System.out.println(test);
+        String dd=df.format(test);
+        System.out.println(dd);
+        System.out.println(1.0==1);
+
+        Stream<String> stream = Stream.of("I", "love", "you", "too");
+        Map<String, Integer> map = stream.collect(Collectors.toMap(Function.identity(), String::length));
+        System.out.println(map.entrySet());*/
         /*String brokerList = "10.45.152.238:9092";
         String groupId = "consumer_r_yiworld";
         String topic = "data1";
@@ -81,6 +112,7 @@ public class Main {
         imageOutput.close();// 关闭输入输出流
 
         System.out.println(data3.length());*/
+
     }
 
     public static String getInnetIp() throws SocketException {
@@ -125,6 +157,124 @@ public class Main {
         return null;
     }
 
+    public static int execCommend(String command, String ip, int port, String user, String passwd) {
+        int result = 0;
+        Connection connection = new Connection(ip, port);
+        Session session = null;
+        InputStream stdout = null;
+        BufferedReader stdoutReader = null;
+        try {
+            connection.connect();
+            boolean isAuthed = connection.authenticateWithPassword(user, passwd);
+            if (isAuthed) {
+                session = connection.openSession();
+                session.execCommand(command);
+                stdout = new StreamGobbler(session.getStdout());
+//               InputStream stderr = new StreamGobbler(session.getStderr());
+                stdoutReader = new BufferedReader(
+                        new InputStreamReader(stdout));
+//                BufferedReader stderrReader = new BufferedReader(
+//                        new InputStreamReader(stderr));
+                while (true) {
+                    String line = stdoutReader.readLine();
+                    if (line == null) {
+                        break;
+                    }
+                    System.out.println("Stdout " + ip + " :" + line);
+                    getGpuInfo(line);
+                }
+            } else {
+                result = 1;
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            result = -1;
+        } finally {
+            if (null != stdoutReader) {
+                try {
+                    stdoutReader.close();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            if (null != stdout) {
+                try {
+                    stdout.close();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            if (null != session) {
+                session.close();
+            }
+            if (null != connection) {
+                connection.close();
+            }
+        }
+        return result;
+    }
+
+    public static void getGpuInfo(String line){
+        String gpuNum=line.split(":")[0].trim();
+        String gpuName=line.split(":")[1].split("\\(")[0].trim();
+        System.out.println(gpuNum+";"+gpuName);
+    }
+
+    public static int getFile(ByteArrayOutputStream bos, String remoteFile, String ip, int port, String user, String passwd) {
+        int result = 0;
+        Connection connection = new Connection(ip, port);
+        try {
+            connection.connect();
+            boolean isAuthed = connection.authenticateWithPassword(user, passwd);
+            if (isAuthed) {
+                SCPClient scpClient = connection.createSCPClient();
+                scpClient.get(remoteFile,bos);
+                //new String(bos.toByteArray(), "UTF-8");
+            } else {
+                result = 1;
+            }
+        } catch (Exception ex) {
+            result = -1;
+        } finally {
+            if (null != connection) {
+                connection.close();
+            }
+        }
+        return result;
+    }
+
+    /**
+     * @param data                      文件二进制数据
+     * @param remoteFileName            远程文件名
+     * @param remoteTargetDirectory     远程文件目录
+     * @param ip
+     * @param port
+     * @param user
+     * @param passwd
+     * @return
+     */
+    public static int putFile(byte[] data, String remoteFileName,String remoteTargetDirectory, String ip, int port, String user, String passwd) {
+        int result = 0;
+        Connection connection = new Connection(ip, port);
+        try {
+            connection.connect();
+            boolean isAuthed = connection.authenticateWithPassword(user, passwd);
+            if (isAuthed) {
+                SCPClient scpClient = connection.createSCPClient();
+                scpClient.put(data, remoteFileName,remoteTargetDirectory);
+            } else {
+                result = 1;
+            }
+        } catch (Exception ex) {
+            result = -1;
+        } finally {
+            if (null != connection) {
+                connection.close();
+            }
+        }
+        return result;
+    }
 }
+
 
 
