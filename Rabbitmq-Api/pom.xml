@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <spring-rabbit.version>1.6.3.RELEASE</spring-rabbit.version>
+        <spring-rabbit.version>2.2.5.RELEASE</spring-rabbit.version>
     </properties>
 
     <dependencies>
