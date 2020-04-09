@@ -137,7 +137,7 @@
         <dependency>
             <groupId>org.apache.phoenix</groupId>
             <artifactId>phoenix-client</artifactId>
-            <version>4.9.0-HBase-1.1</version>
+            <version>4.14.1-HBase-1.4</version>
         </dependency>
 
         <dependency>

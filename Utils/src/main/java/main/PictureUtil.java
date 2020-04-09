@@ -24,7 +24,7 @@ public class PictureUtil {
      * @param imgFile 待处理图片
      * @return
      */
-    /*public static String getImgStr(String imgFile) {
+    public static String getImgStr(String imgFile) {
         //将图片文件转化为字节数组字符串，并对其进行Base64编码处理
         InputStream in = null;
         byte[] data = null;
@@ -37,9 +37,8 @@ public class PictureUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //return new String(org.apache.commons.codec.binary.Base64.encodeBase64(data));
         return new String(Base64.getEncoder().encode(data));
-    }*/
+    }
 
     static byte[] bytes;
 
@@ -52,7 +51,7 @@ public class PictureUtil {
     public static void fileToByte(File img) throws Exception {
         BufferedImage bi;
         bi = ImageIO.read(img);
-        bytes = bufferedImageTobytes(bi, 1);
+        bytes = bufferedImageToBytes(bi, 1);
         System.err.println(bytes.length);
     }
 
@@ -80,7 +79,7 @@ public class PictureUtil {
      * @param quality 压缩质量，在0-1之间，
      * @return 返回的字节数组
      */
-    private static byte[] bufferedImageTobytes(BufferedImage image, float quality) {
+    private static byte[] bufferedImageToBytes(BufferedImage image, float quality) {
         //如果图片空，返回空
         if (image == null) {
             return null;

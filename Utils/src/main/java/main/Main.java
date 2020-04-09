@@ -32,6 +32,7 @@ import java.util.zip.DeflaterOutputStream;
 import java.util.zip.GZIPOutputStream;
 
 import org.apache.commons.codec.binary.Base64;
+import org.junit.Test;
 import sun.misc.BASE64Encoder;
 
 import javax.imageio.ImageIO;
@@ -273,6 +274,26 @@ public class Main {
             }
         }
         return result;
+    }
+
+    @Test
+    public void test(){
+        B b = new B();
+        b.scan();  //我的输出结果是什么？
+    }
+    static class A {
+        public void scan(){
+            doScan();
+        }
+        protected void doScan(){
+            System.out.println("A.doScan");
+        }
+    }
+    static class B extends A {
+        @Override
+        protected void doScan() {
+            System.out.println("B.doScan");
+        }
     }
 }
 

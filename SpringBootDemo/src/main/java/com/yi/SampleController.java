@@ -1,5 +1,6 @@
 package com.yi;
 
+import com.yi.bean.TestTime;
 import com.yi.bean.UserBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,6 +9,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -44,6 +46,13 @@ public class SampleController {
     @ResponseBody
     String sayHello2(){
         return userBean.getName()+","+userBean.getAge()+"岁岁";
+    }
+
+
+    @RequestMapping("/testTime")
+    @ResponseBody
+    void test(@RequestBody TestTime time){
+        System.out.println("time:"+time.toString());
     }
 
 }

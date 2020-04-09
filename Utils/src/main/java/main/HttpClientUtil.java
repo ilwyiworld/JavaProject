@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
 public class HttpClientUtil {
     public static final String CHARSET = "UTF-8";
     private  static PoolingHttpClientConnectionManager cm = null;
@@ -40,9 +39,6 @@ public class HttpClientUtil {
         return httpClient;
     }
     
-
-   
-
     public static String doGet(String url, Map<String, String> params,Map<String, String> headers){
         return doGet(url, params,CHARSET,headers);
     }
