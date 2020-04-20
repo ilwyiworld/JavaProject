@@ -61,7 +61,7 @@ public class ProducerBase {
     private Map<String, TopicCommond> topicMap = new HashMap<String, TopicCommond>();
 
     /**
-     * Instantiates a new producer base.
+     * Instantiates a new kafka.producer base.
      */
     public ProducerBase() {
     }
@@ -99,7 +99,7 @@ public class ProducerBase {
             File configFile = null;
             if (props == null) {
                 props = new Properties();
-                configFile = new File("producer.properties");
+                configFile = new File("kafka.producer.properties");
                 L.info("config file path: {}", configFile.getAbsolutePath());
 
                 try (InputStream in = new BufferedInputStream(new FileInputStream(configFile))) {

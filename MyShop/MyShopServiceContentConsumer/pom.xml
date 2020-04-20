@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <name>MyShopServiceContentConsumer</name>
-    <artifactId>myshop-service-content-consumer</artifactId>
+    <artifactId>myshop-service-content-kafka.consumer</artifactId>
 
     <dependencies>
         <!-- Spring Boot Starter Settings -->
@@ -47,7 +47,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.yiworld.myshop.service.content.consumer.MyShopServiceContentConsumerApplication</mainClass>
+                    <mainClass>com.yiworld.myshop.service.content.kafka.consumer.MyShopServiceContentConsumerApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

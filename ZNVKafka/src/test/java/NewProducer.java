@@ -21,7 +21,7 @@ public class NewProducer {
     }
 
     public void send() {
-        try (BufferedReader br = new BufferedReader(new FileReader(new File("producer.properties")));) {
+        try (BufferedReader br = new BufferedReader(new FileReader(new File("kafka.producer.properties")));) {
             String line;
             long count = 0;
             System.out.println("start send msg....");

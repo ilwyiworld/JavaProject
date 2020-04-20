@@ -408,7 +408,7 @@ public final class LibConfigClient extends ClientBase {
         notifyMsg.put("table_name", tableName);
         notifyMsg.put("primary_id", primaryId);
         notifyMsg.put("reference_id", null);
-        // boolean ret = producer.sendData(notifyMsg);
+        // boolean ret = kafka.producer.sendData(notifyMsg);
         // L.info("send to kafka return {}", ret);
     }
 

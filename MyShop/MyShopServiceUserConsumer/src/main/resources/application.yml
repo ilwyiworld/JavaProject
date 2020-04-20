@@ -1,7 +1,7 @@
 # Spring boot application
 spring:
   application:
-    name: myshop-service-user-consumer
+    name: myshop-service-user-kafka.consumer
   thymeleaf:
     cache: false # 开发时关闭缓存,不然没法看到实时页面
     mode: LEGACYHTML5 # 用非严格的 HTML
@@ -20,11 +20,11 @@ services:
 # Dubbo Config properties
 dubbo:
   scan:
-    basePackages: com.yiworld.myshop.service.user.consumer
+    basePackages: com.yiworld.myshop.service.user.kafka.consumer
   ## ApplicationConfig Bean
   application:
-    id: myshop-service-user-consumer
-    name: myshop-service-user-consumer
+    id: myshop-service-user-kafka.consumer
+    name: myshop-service-user-kafka.consumer
   ## ProtocolConfig Bean
   protocol:
     id: dubbo

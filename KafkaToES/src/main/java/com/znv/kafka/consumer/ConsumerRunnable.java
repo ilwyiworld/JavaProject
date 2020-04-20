@@ -30,7 +30,7 @@ public class ConsumerRunnable implements Runnable {
         }
         consumer = new KafkaConsumer(props);
         topics = TopicUtil.getTopicList("receive.topics");
-        logger.info(String.format("Create consumer, groupid:%s", new Object[]{props.getProperty("group.id")}));
+        logger.info(String.format("Create kafka.consumer, groupid:%s", new Object[]{props.getProperty("group.id")}));
         consumer.subscribe(topics);   // 本例使用分区副本自动分配策略
         timeout=Long.parseLong(PropertiesUtil.getProperties("config.properties").getProperty("kafka.timeout"));
         handleNum=Integer.parseInt(PropertiesUtil.getProperties("config.properties").getProperty("handleNum"));

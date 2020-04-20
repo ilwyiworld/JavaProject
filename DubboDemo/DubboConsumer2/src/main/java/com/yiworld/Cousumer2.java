@@ -7,7 +7,7 @@ public class Cousumer2 {
     public static void main(String[] args) {
         //测试常规服务
         ClassPathXmlApplicationContext context =
-                new ClassPathXmlApplicationContext(new String[]{"classpath:consumer.xml"});
+                new ClassPathXmlApplicationContext(new String[]{"classpath:kafka.consumer.xml"});
         context.start();
         System.out.println("consumer2 start");
         DemoService demoService = context.getBean(DemoService.class);

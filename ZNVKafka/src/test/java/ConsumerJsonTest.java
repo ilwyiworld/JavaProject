@@ -45,7 +45,7 @@ public class ConsumerJsonTest {
         topicCount.put(topic, new Integer(1));
         Map<String, List<KafkaStream<byte[], byte[]>>> consumerStreams = consumer.createMessageStreams(topicCount);
         List<KafkaStream<byte[], byte[]>> streams = consumerStreams.get(topic);
-        System.out.println("iCap consumer");
+        System.out.println("iCap kafka.consumer");
         int count = 0;
         for (final KafkaStream stream : streams) {
             ConsumerIterator<byte[], byte[]> consumerIte = stream.iterator();

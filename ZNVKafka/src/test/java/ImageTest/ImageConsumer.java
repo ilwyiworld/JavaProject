@@ -38,7 +38,7 @@ public class ImageConsumer {
     public void consumer() {
         consumer.subscribe(this.topic);
         System.out.println("ImageTest.ImageConsumer");
-        Path path = Paths.get("E:\\IdeaProject\\iCapSDK\\consumer");
+        Path path = Paths.get("E:\\IdeaProject\\iCapSDK\\kafka.consumer");
         String currentKey = "";
         BufferedOutputStream out = null;
         try {

@@ -1,10 +1,10 @@
 package main;
 
 import com.alibaba.fastjson.JSONObject;
-import producer.FeatureUtil;
-import producer.PictureUtil;
-import producer.ProducerBase;
-import producer.PropertiesUtil;
+import kafka.producer.FeatureUtil;
+import kafka.producer.PictureUtil;
+import kafka.producer.ProducerBase;
+import kafka.producer.PropertiesUtil;
 
 import java.util.Iterator;
 import java.util.Properties;

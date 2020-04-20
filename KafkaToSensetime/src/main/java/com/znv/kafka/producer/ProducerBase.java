@@ -35,10 +35,10 @@ public class ProducerBase {
     }
 
     /**
-     * Instantiates a new producer base.
+     * Instantiates a new kafka.producer base.
      */
     public ProducerBase(){
-        //initWithConfig("producer.properties");
+        //initWithConfig("kafka.producer.properties");
     }
 
     public void initWithConfig(String propertiesPath){

@@ -50,7 +50,7 @@ public class ProducerCallback implements Callback {
 
     /*
      * (non-Javadoc)
-     * @see org.apache.kafka.clients.producer.Callback#onCompletion(org.apache.kafka.clients.producer.RecordMetadata,
+     * @see org.apache.kafka.clients.kafka.producer.Callback#onCompletion(org.apache.kafka.clients.kafka.producer.RecordMetadata,
      * java.lang.Exception)
      */
     @Override

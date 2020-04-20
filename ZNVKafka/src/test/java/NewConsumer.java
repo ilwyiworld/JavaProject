@@ -19,7 +19,7 @@ import java.util.Properties;
 public class NewConsumer {
 
     private KafkaConsumer<String, Map<String, Object>> consumer;
-    // private KafkaConsumer<Integer, String> consumer;
+    // private KafkaConsumer<Integer, String> kafka.consumer;
     private ArrayList<String> topic;
 
     Logger log = LoggerFactory.getLogger(NewConsumer.class);
@@ -32,7 +32,7 @@ public class NewConsumer {
         props.put("auto.offset.reset", "earliest");
         props.put("key.deserializer", "org.apache.kafka.common.serialization.IntegerDeserializer");
         props.put("value.deserializer", "com.znv.iCapProducerApi.common.KafkaAvroDeSerializer");
-        // consumer = new KafkaConsumer<Integer, String>(props);
+        // kafka.consumer = new KafkaConsumer<Integer, String>(props);
         // props.put("value.deserializer","org.apache.kafka.common.serialization.StringDeserializer");
         consumer = new KafkaConsumer<String, Map<String, Object>>(props);
         this.topic = topic;
@@ -59,7 +59,7 @@ public class NewConsumer {
 
             while (true) {
                 ConsumerRecords<String, Map<String, Object>> records = consumer.poll(1000);
-                // ConsumerRecords<Integer, String> records = consumer.poll(1000);
+                // ConsumerRecords<Integer, String> records = kafka.consumer.poll(1000);
                 for (ConsumerRecord<String, Map<String, Object>> record : records) {
 
                     // for (ConsumerRecord<Integer, String> record : records) {
@@ -70,7 +70,7 @@ public class NewConsumer {
                     // byte[] byteFeature = ((ByteBuffer) feature).array();
                     // System.out.println("======feature.length: " + byteFeature.length);
 
-                    String fileName = "consumer/" + value.get(new Utf8("resultIdx")).toString();
+                    String fileName = "kafka.consumer/" + value.get(new Utf8("resultIdx")).toString();
                     File file = new File(fileName + ".jpg");
                     OutputStream out = new FileOutputStream(file);
 

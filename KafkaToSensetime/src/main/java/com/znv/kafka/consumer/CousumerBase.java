@@ -31,7 +31,7 @@ public class CousumerBase {
             props = PropertiesUtil.getProperties("consumer.properties");
         }
         consumer = new KafkaConsumer(props);
-        logger.info(String.format("Create consumer, groupid:%s", new Object[]{props.getProperty("group.id")}));
+        logger.info(String.format("Create kafka.consumer, groupid:%s", new Object[]{props.getProperty("group.id")}));
         topics = TopicUtil.getTopicList("receive.topics");
     }
 
@@ -54,7 +54,7 @@ public class CousumerBase {
     }
 
     public void stopConsumer() {
-        this.logger.info(String.format("stop consumer, groupid:%5d", new Object[]{Integer.valueOf(this.tmpIdx)}));
+        this.logger.info(String.format("stop kafka.consumer, groupid:%5d", new Object[]{Integer.valueOf(this.tmpIdx)}));
         this.consumer.close();
     }
 

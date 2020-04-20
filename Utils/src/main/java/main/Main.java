@@ -68,12 +68,12 @@ public class Main {
         int consumerNum = 1;
         ConsumerGroup consumerGroup = new ConsumerGroup(consumerNum, groupId, topic, brokerList);
         consumerGroup.execute();*/
-        /*Properties props = PropertiesUtil.getProperties("consumer.properties");
-        KafkaConsumer consumer = new KafkaConsumer(props);
+        /*Properties props = PropertiesUtil.getProperties("kafka.consumer.properties");
+        KafkaConsumer kafka.consumer = new KafkaConsumer(props);
         ArrayList<String> topics = TopicUtil.getTopicList("receive.topics");
-        consumer.subscribe(topics);
+        kafka.consumer.subscribe(topics);
         while (true){
-            ConsumerRecords<String, String> records = consumer.poll(100);
+            ConsumerRecords<String, String> records = kafka.consumer.poll(100);
             System.out.println("records:"+records.count());
             for (ConsumerRecord<String, String> record : records) {
                 try {

@@ -43,7 +43,7 @@ public class ConsumerRunnable implements Runnable {
         threshold=Float.parseFloat(PropertiesUtil.getProperties("fss.properties").getProperty("fss.threshold"));
         maxCompareSeconds=Long.parseLong(PropertiesUtil.getProperties("fss.properties").getProperty("fss.maxCompareSeconds"));
         sleepTimeout=Long.parseLong(PropertiesUtil.getProperties("fss.properties").getProperty("fss.sleepTimeout"));
-        logger.info(String.format("Create consumer, groupid:%s", new Object[]{props.getProperty("group.id")}));
+        logger.info(String.format("Create kafka.consumer, groupid:%s", new Object[]{props.getProperty("group.id")}));
         consumer.subscribe(topics);   // 本例使用分区副本自动分配策略
         timeout=Long.parseLong(PropertiesUtil.getProperties("fss.properties").getProperty("fss.timeout"));
 
@@ -147,7 +147,7 @@ public class ConsumerRunnable implements Runnable {
                 consumer.commitSync();
 /*              //单线程去重
                 boolean isFirstData=false;
-                ConsumerRecords<String, String> records = consumer.poll(timeout);   // 本例使用1000ms作为获取超时时间
+                ConsumerRecords<String, String> records = kafka.consumer.poll(timeout);   // 本例使用1000ms作为获取超时时间
                 if(oldList.size()==0){
                     isFirstData=true;
                 }
@@ -164,7 +164,7 @@ public class ConsumerRunnable implements Runnable {
                         sendData.put("detect_data",detectData);
                         if(isFirstData){
                             //第一批数据 不用比较
-                            producer.sendData(sendData);
+                            kafka.producer.sendData(sendData);
                             newList.add(sendData);
                         }else{
                             //与上一批数据比较
@@ -180,7 +180,7 @@ public class ConsumerRunnable implements Runnable {
                             }
                             if(!isRepeatFace){
                                 //不重复则发送，而且保存在newList中
-                                producer.sendData(sendData);
+                                kafka.producer.sendData(sendData);
                                 newList.add(sendData);
                             }
                         }
@@ -193,7 +193,7 @@ public class ConsumerRunnable implements Runnable {
                 for(Map<String,Object> sendData:newList){
                     oldList.add(sendData);
                 }
-                consumer.commitSync();
+                kafka.consumer.commitSync();
 */
             }catch (Exception e) {
                 e.printStackTrace();

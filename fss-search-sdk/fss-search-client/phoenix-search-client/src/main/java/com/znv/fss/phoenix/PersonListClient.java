@@ -29,7 +29,7 @@ import java.util.Map;
 public final class PersonListClient extends ClientBase {
     private static final Logger L = LoggerFactory.getLogger(PersonListClient.class);
     private static String tableName = ConfigManager.getTableName(VConstants.FSS_PERSONLIST_V113_TABLE_NAME);
-    // private static ProducerBase producer = new ProducerBase();
+    // private static ProducerBase kafka.producer = new ProducerBase();
     private static final String LIBID = "lib_id";
     // private static final String LIBNAME = "lib_name";
     private static final String PERSONID = "person_id";
@@ -1396,8 +1396,8 @@ public final class PersonListClient extends ClientBase {
     // private static void init() {
     // try {
     // Properties props = ConfigManager.getProducerProps();
-    // producer.initWithConfig(props);
-    // producer.setMsgTypeParam(ConfigManager.getString(VConstants.NOTIFY_TOPIC_MSGTYPE),
+    // kafka.producer.initWithConfig(props);
+    // kafka.producer.setMsgTypeParam(ConfigManager.getString(VConstants.NOTIFY_TOPIC_MSGTYPE),
     // ConfigManager.getString(VConstants.ZOOKEEPER_ADDR),
     // ConfigManager.getInt(VConstants.NOTIFY_PARTITION_NUM),
     // ConfigManager.getInt(VConstants.NOTIFY_REPLICATION_NUM));
@@ -1475,8 +1475,8 @@ public final class PersonListClient extends ClientBase {
     }
 
     // public void close() {
-    // if (producer != null) {
-    // producer.close();
+    // if (kafka.producer != null) {
+    // kafka.producer.close();
     // }
     // }
 

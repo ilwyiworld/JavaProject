@@ -21385,7 +21385,7 @@ module.exports = exports['default'];
   };
 
   WebVTT.Parser.prototype = {
-    // If the error is a ParsingError then report it to the consumer if
+    // If the error is a ParsingError then report it to the kafka.consumer if
     // possible. If it's not a ParsingError then throw it like normal.
     reportOrThrowError: function(e) {
       if (e instanceof ParsingError) {
