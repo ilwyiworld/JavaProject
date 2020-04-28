@@ -15,8 +15,8 @@ public class JedisConfig {
     @Value("${spring.redis.port}")
     private int port;
 
-    @Value("${spring.redis.password}")
-    private String password;
+    /*@Value("${spring.redis.password}")
+    private String password;*/
 
     @Value("${spring.redis.jedis.pool.max-idle}")
     private int maxIdle;
@@ -36,9 +36,7 @@ public class JedisConfig {
         jedisPoolConfig.setMaxIdle(maxIdle);
         jedisPoolConfig.setMaxWaitMillis(maxWait);
         jedisPoolConfig.setMinIdle(minIdle);
-
-        JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout, password);
-
+        JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout);
         return jedisPool;
     }
 

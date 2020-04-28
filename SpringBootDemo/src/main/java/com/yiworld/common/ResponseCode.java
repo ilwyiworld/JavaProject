@@ -1,5 +1,7 @@
 package com.yiworld.common;
 
+import lombok.Data;
+
 /**
  * 响应状态码
  */
@@ -22,9 +24,6 @@ public enum ResponseCode {
     USERNAME_OR_PASSWORD_WRONG(20003, "用户名或密码错误"),
     USER_NOT_EXISTS(20004, "用户不存在"),
     WRONG_PASSWORD(20005, "密码错误"),
-
-    // 订单模块 4xxxx
-
     ;
 
     ResponseCode(Integer code, String msg) {

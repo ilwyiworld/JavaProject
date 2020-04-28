@@ -2,6 +2,7 @@ package com.yiworld.controller;
 
 import com.yiworld.annotation.AccessLimit;
 import com.yiworld.annotation.ApiIdempotent;
+import com.yiworld.annotation.ResponseResult;
 import com.yiworld.common.ServerResponse;
 import com.yiworld.pojo.Mail;
 import com.yiworld.service.TestService;
@@ -9,9 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/test")
@@ -39,7 +38,13 @@ public class TestController {
             String msg = errors.getFieldError().getDefaultMessage();
             return ServerResponse.error(msg);
         }
-
         return testService.send(mail);
+    }
+
+    @GetMapping("testResult")
+    @ResponseResult
+    @ResponseBody
+    public Object testResult() {
+        return "测试数据";
     }
 }
