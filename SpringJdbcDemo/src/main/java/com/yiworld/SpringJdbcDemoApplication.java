@@ -10,10 +10,10 @@ import org.springframework.core.env.Environment;
 import javax.sql.DataSource;
 
 @SpringBootApplication
-public class SpringjdbcdemoApplication {
+public class SpringJdbcDemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringjdbcdemoApplication.class, args);
+		SpringApplication.run(SpringJdbcDemoApplication.class, args);
 	}
 
 	@Autowired

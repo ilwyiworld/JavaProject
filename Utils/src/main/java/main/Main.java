@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpException;
 import net.coobird.thumbnailator.Thumbnails;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
@@ -21,10 +22,15 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.*;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+import java.util.concurrent.Executors;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -43,15 +49,18 @@ import javax.swing.*;
  * Created by Administrator on 2018/2/27.
  */
 public class Main {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         //execCommend("nvidia-smi -L","10.10.1.82",22,"ubuntu","cimevue");
-        ByteArrayOutputStream bos=new ByteArrayOutputStream();
-        getFile(bos,"/root/config.json",
-                "10.10.1.163",22,"root","root" );
-        JSONObject obj= JSON.parseObject(new String(bos.toByteArray(), "UTF-8"));
-        System.out.println(obj);
-        obj.put("test","test");
-        putFile(obj.toJSONString().getBytes(),"config.json","/root","10.10.1.163",22,"root","root");
+        File picFile = new File("/home/ftpuser/pics");
+        Files.walk(picFile.toPath(), 2)
+                .map(Path::toFile)
+                .filter(
+                        file -> (file.getName().endsWith(".jpg") || file.getName().endsWith(".png") || file.getName().endsWith(".DAT"))
+                ).forEach(file -> {
+            FileUtils.deleteQuietly(file);
+            System.out.println("delete file " + file.getName());
+        });
+
         /*DecimalFormat df = new DecimalFormat("#.000");
         float test=(float)4/3;
         System.out.println(test);
@@ -215,10 +224,10 @@ public class Main {
         return result;
     }
 
-    public static void getGpuInfo(String line){
-        String gpuNum=line.split(":")[0].trim();
-        String gpuName=line.split(":")[1].split("\\(")[0].trim();
-        System.out.println(gpuNum+";"+gpuName);
+    public static void getGpuInfo(String line) {
+        String gpuNum = line.split(":")[0].trim();
+        String gpuName = line.split(":")[1].split("\\(")[0].trim();
+        System.out.println(gpuNum + ";" + gpuName);
     }
 
     public static int getFile(ByteArrayOutputStream bos, String remoteFile, String ip, int port, String user, String passwd) {
@@ -229,7 +238,7 @@ public class Main {
             boolean isAuthed = connection.authenticateWithPassword(user, passwd);
             if (isAuthed) {
                 SCPClient scpClient = connection.createSCPClient();
-                scpClient.get(remoteFile,bos);
+                scpClient.get(remoteFile, bos);
                 //new String(bos.toByteArray(), "UTF-8");
             } else {
                 result = 1;
@@ -245,16 +254,16 @@ public class Main {
     }
 
     /**
-     * @param data                      文件二进制数据
-     * @param remoteFileName            远程文件名
-     * @param remoteTargetDirectory     远程文件目录
+     * @param data                  文件二进制数据
+     * @param remoteFileName        远程文件名
+     * @param remoteTargetDirectory 远程文件目录
      * @param ip
      * @param port
      * @param user
      * @param passwd
      * @return
      */
-    public static int putFile(byte[] data, String remoteFileName,String remoteTargetDirectory, String ip, int port, String user, String passwd) {
+    public static int putFile(byte[] data, String remoteFileName, String remoteTargetDirectory, String ip, int port, String user, String passwd) {
         int result = 0;
         Connection connection = new Connection(ip, port);
         try {
@@ -262,7 +271,7 @@ public class Main {
             boolean isAuthed = connection.authenticateWithPassword(user, passwd);
             if (isAuthed) {
                 SCPClient scpClient = connection.createSCPClient();
-                scpClient.put(data, remoteFileName,remoteTargetDirectory);
+                scpClient.put(data, remoteFileName, remoteTargetDirectory);
             } else {
                 result = 1;
             }
@@ -277,18 +286,21 @@ public class Main {
     }
 
     @Test
-    public void test(){
+    public void test() {
         B b = new B();
         b.scan();  //我的输出结果是什么？
     }
+
     static class A {
-        public void scan(){
+        public void scan() {
             doScan();
         }
-        protected void doScan(){
+
+        protected void doScan() {
             System.out.println("A.doScan");
         }
     }
+
     static class B extends A {
         @Override
         protected void doScan() {
@@ -296,6 +308,7 @@ public class Main {
         }
     }
 }
+
 
 
 

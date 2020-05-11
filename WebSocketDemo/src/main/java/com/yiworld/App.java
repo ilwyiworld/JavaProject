@@ -1,6 +1,8 @@
 package com.yiworld;
 
+import org.java_websocket.WebSocket;
 import org.java_websocket.client.WebSocketClient;
+import org.java_websocket.drafts.Draft_17;
 import org.java_websocket.handshake.ServerHandshake;
 
 import java.io.UnsupportedEncodingException;
@@ -15,7 +17,8 @@ public class App {
     public static WebSocketClient client;
 
     public static void main(String[] args) throws URISyntaxException, UnsupportedEncodingException {
-        client = new WebSocketClient(new URI("ws://localhost:5788/alarmInfoSocketServer"),new Draft_17_Custom()) {
+        client = new WebSocketClient(new URI("ws://10.10.1.53:9080/parser-admin/alarmInfoSocketServer"), new Draft_17()) {
+        //client = new WebSocketClient(new URI("ws://121.40.165.18:8800"), new Draft_17()) {
 
             @Override
             public void onOpen(ServerHandshake arg0) {
@@ -24,7 +27,7 @@ public class App {
 
             @Override
             public void onMessage(String arg0) {
-                System.out.println("收到消息"+arg0);
+                System.out.println("收到消息" + arg0);
             }
 
             @Override
@@ -41,7 +44,7 @@ public class App {
             @Override
             public void onMessage(ByteBuffer bytes) {
                 try {
-                    System.out.println(new String(bytes.array(),"utf-8"));
+                    System.out.println(new String(bytes.array(), "utf-8"));
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
@@ -52,15 +55,15 @@ public class App {
 
         client.connect();
 
-        /*while(!client.getReadyState().equals(WebSocket.READYSTATE.OPEN)){
+        while (!client.getReadyState().equals(WebSocket.READYSTATE.OPEN)) {
             System.out.println("还没有打开");
-        }*/
+        }
         System.out.println("打开了");
         send("hello world".getBytes("utf-8"));
         client.send("hello world");
     }
 
-    public static void send(byte[] bytes){
+    public static void send(byte[] bytes) {
         client.send(bytes);
     }
 }
