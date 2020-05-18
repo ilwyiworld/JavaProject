@@ -4,46 +4,16 @@ import ch.ethz.ssh2.Connection;
 import ch.ethz.ssh2.SCPClient;
 import ch.ethz.ssh2.Session;
 import ch.ethz.ssh2.StreamGobbler;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.jcraft.jsch.ChannelSftp;
-import com.jcraft.jsch.SftpException;
 import net.coobird.thumbnailator.Thumbnails;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
-import org.elasticsearch.transport.client.PreBuiltTransportClient;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.*;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.List;
-import java.util.Map;
-import java.util.Vector;
-import java.util.concurrent.Executors;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import java.util.zip.DeflaterOutputStream;
-import java.util.zip.GZIPOutputStream;
-
-import org.apache.commons.codec.binary.Base64;
 import org.junit.Test;
-import sun.misc.BASE64Encoder;
 
-import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageOutputStream;
-import javax.swing.*;
 
 /**
  * Created by Administrator on 2018/2/27.
@@ -60,40 +30,10 @@ public class Main {
             FileUtils.deleteQuietly(file);
             System.out.println("delete file " + file.getName());
         });
+    }
 
-        /*DecimalFormat df = new DecimalFormat("#.000");
-        float test=(float)4/3;
-        System.out.println(test);
-        String dd=df.format(test);
-        System.out.println(dd);
-        System.out.println(1.0==1);
-
-        Stream<String> stream = Stream.of("I", "love", "you", "too");
-        Map<String, Integer> map = stream.collect(Collectors.toMap(Function.identity(), String::length));
-        System.out.println(map.entrySet());*/
-        /*String brokerList = "10.45.152.238:9092";
-        String groupId = "consumer_r_yiworld";
-        String topic = "data1";
-        int consumerNum = 1;
-        ConsumerGroup consumerGroup = new ConsumerGroup(consumerNum, groupId, topic, brokerList);
-        consumerGroup.execute();*/
-        /*Properties props = PropertiesUtil.getProperties("kafka.consumer.properties");
-        KafkaConsumer kafka.consumer = new KafkaConsumer(props);
-        ArrayList<String> topics = TopicUtil.getTopicList("receive.topics");
-        kafka.consumer.subscribe(topics);
-        while (true){
-            ConsumerRecords<String, String> records = kafka.consumer.poll(100);
-            System.out.println("records:"+records.count());
-            for (ConsumerRecord<String, String> record : records) {
-                try {
-                    String value = record.value();
-                    JSONObject obj = JSON.parseObject(value);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }*/
-        /*InputStream inputStream = null;
+    public static void scaleImg() throws IOException {
+        InputStream inputStream = null;
         byte[] data = null;
         try {
             inputStream = new FileInputStream("C:\\Users\\Administrator\\Desktop\\2.jpg");
@@ -115,14 +55,11 @@ public class Main {
         Thumbnails.of(in).size(640, 512).toOutputStream(outputStream);
         buf = outputStream.toByteArray();
         String data3=Base64Util.encode(buf);
-
         File result = new File("C:\\Users\\Administrator\\Desktop\\1.jpg");//要写入的图片
         FileImageOutputStream imageOutput = new FileImageOutputStream(result);
         imageOutput.write(buf, 0, buf.length);
         imageOutput.close();// 关闭输入输出流
-
-        System.out.println(data3.length());*/
-
+        System.out.println(data3.length());
     }
 
     public static String getInnetIp() throws SocketException {
@@ -153,20 +90,6 @@ public class Main {
         }
     }
 
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-
-        return null;
-    }
-
     public static int execCommend(String command, String ip, int port, String user, String passwd) {
         int result = 0;
         Connection connection = new Connection(ip, port);
@@ -180,11 +103,10 @@ public class Main {
                 session = connection.openSession();
                 session.execCommand(command);
                 stdout = new StreamGobbler(session.getStdout());
-//               InputStream stderr = new StreamGobbler(session.getStderr());
+//              InputStream stderr = new StreamGobbler(session.getStderr());
                 stdoutReader = new BufferedReader(
                         new InputStreamReader(stdout));
-//                BufferedReader stderrReader = new BufferedReader(
-//                        new InputStreamReader(stderr));
+//              BufferedReader stderrReader = new BufferedReader(new InputStreamReader(stderr));
                 while (true) {
                     String line = stdoutReader.readLine();
                     if (line == null) {
@@ -308,7 +230,3 @@ public class Main {
         }
     }
 }
-
-
-
-
