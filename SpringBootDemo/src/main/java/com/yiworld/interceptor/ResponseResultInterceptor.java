@@ -32,7 +32,6 @@ public class ResponseResultInterceptor implements HandlerInterceptor {
                 // 设置此请求返回体需要包装，向下传递，在 ResponseBodyAdvice 接口进行判断
                 request.setAttribute(RESPONSE_RESULT, clazz.getAnnotation(ResponseResult.class));
             } else if (method.isAnnotationPresent(ResponseResult.class)) {
-
                 request.setAttribute(RESPONSE_RESULT, method.getAnnotation(ResponseResult.class));
             }
         }

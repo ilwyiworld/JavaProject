@@ -2,6 +2,7 @@ package com.yiworld.controller;
 
 import com.yiworld.annotation.AccessLimit;
 import com.yiworld.annotation.ApiIdempotent;
+import com.yiworld.annotation.LoggerManage;
 import com.yiworld.annotation.ResponseResult;
 import com.yiworld.common.ServerResponse;
 import com.yiworld.pojo.Mail;
@@ -41,9 +42,10 @@ public class TestController {
         return testService.send(mail);
     }
 
-    @GetMapping("testResult")
+    @PostMapping("testResult")
     @ResponseResult
     @ResponseBody
+    @LoggerManage(description = "日志管理")
     public Object testResult() {
         return "测试数据";
     }
