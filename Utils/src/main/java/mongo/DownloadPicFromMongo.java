@@ -80,10 +80,10 @@ public class DownloadPicFromMongo {
     //需要密码认证方式连接
     public static MongoDatabase getConnect() {
         List<ServerAddress> adds = new ArrayList<>();
-        ServerAddress serverAddress = new ServerAddress("10.10.1.89", 27017);
+        ServerAddress serverAddress = new ServerAddress("11.61.61.103", 27017);
         adds.add(serverAddress);
         List<MongoCredential> credentials = new ArrayList<>();
-        MongoCredential mongoCredential = MongoCredential.createScramSha1Credential("pensees", "admin", "pensees@1234".toCharArray());
+        MongoCredential mongoCredential = MongoCredential.createScramSha1Credential("pensees", "admin", "pensees@huirou".toCharArray());
         credentials.add(mongoCredential);
         MongoClient mongoClient = new MongoClient(adds, credentials);
         MongoDatabase mongoDatabase = mongoClient.getDatabase("parser");

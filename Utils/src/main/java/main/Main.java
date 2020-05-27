@@ -4,13 +4,20 @@ import ch.ethz.ssh2.Connection;
 import ch.ethz.ssh2.SCPClient;
 import ch.ethz.ssh2.Session;
 import ch.ethz.ssh2.StreamGobbler;
+import lombok.Builder;
+import lombok.Data;
 import net.coobird.thumbnailator.Thumbnails;
 import org.apache.commons.io.FileUtils;
+
 import java.io.*;
 import java.net.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Enumeration;
+import java.util.Objects;
+
 import org.junit.Test;
 
 import javax.imageio.stream.FileImageOutputStream;
@@ -21,7 +28,7 @@ import javax.imageio.stream.FileImageOutputStream;
 public class Main {
     public static void main(String[] args) throws Exception {
         //execCommend("nvidia-smi -L","10.10.1.82",22,"ubuntu","cimevue");
-        File picFile = new File("/home/ftpuser/pics");
+        /*File picFile = new File("/home/ftpuser/pics");
         Files.walk(picFile.toPath(), 2)
                 .map(Path::toFile)
                 .filter(
@@ -29,7 +36,7 @@ public class Main {
                 ).forEach(file -> {
             FileUtils.deleteQuietly(file);
             System.out.println("delete file " + file.getName());
-        });
+        });*/
     }
 
     public static void scaleImg() throws IOException {
@@ -44,17 +51,17 @@ public class Main {
             e.printStackTrace();
         }
         //图片base64
-        String fileStr=Base64Util.encode(data);
+        String fileStr = Base64Util.encode(data);
         System.out.println(fileStr.length());
 
-        byte[] data2=Base64Util.decode(fileStr);
+        byte[] data2 = Base64Util.decode(fileStr);
         byte[] buf;
-        InputStream in=new ByteArrayInputStream(data);
+        InputStream in = new ByteArrayInputStream(data);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         //Thumbnails.of(in).scale(0.1f).toOutputStream(outputStream);
         Thumbnails.of(in).size(640, 512).toOutputStream(outputStream);
         buf = outputStream.toByteArray();
-        String data3=Base64Util.encode(buf);
+        String data3 = Base64Util.encode(buf);
         File result = new File("C:\\Users\\Administrator\\Desktop\\1.jpg");//要写入的图片
         FileImageOutputStream imageOutput = new FileImageOutputStream(result);
         imageOutput.write(buf, 0, buf.length);

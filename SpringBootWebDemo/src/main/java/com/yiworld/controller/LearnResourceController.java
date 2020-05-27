@@ -2,11 +2,14 @@ package com.yiworld.controller;
 
 import com.yiworld.domain.LearnResouce;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/10/11.
@@ -14,6 +17,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/learn")
 public class LearnResourceController {
+
+    @GetMapping("hello")
+    public void hello(Model model) {
+        Map<String, Object> map = model.asMap();
+        System.out.println(map);
+    }
     @RequestMapping("/")
     public ModelAndView index(){
         List<LearnResouce> learnList =new ArrayList<LearnResouce>();
@@ -37,7 +46,7 @@ public class LearnResourceController {
         learnList.add(bean);
         bean =new LearnResouce("林祥纤博客系列","从零开始学Spring Boot ","http://412887952-qq-com.iteye.com/category/356333");
         learnList.add(bean);
-        ModelAndView modelAndView = new ModelAndView("/index");
+        ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("learnList", learnList);
         return modelAndView;
     }
@@ -65,7 +74,7 @@ public class LearnResourceController {
         learnList.add(bean);
         bean =new LearnResouce("林祥纤博客系列","从零开始学Spring Boot ","http://412887952-qq-com.iteye.com/category/356333");
         learnList.add(bean);
-        ModelAndView modelAndView = new ModelAndView("/template");
+        ModelAndView modelAndView = new ModelAndView("template");
         modelAndView.addObject("learnList", learnList);
         return modelAndView;
     }

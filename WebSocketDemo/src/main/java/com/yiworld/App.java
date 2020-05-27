@@ -19,7 +19,6 @@ public class App {
     public static void main(String[] args) throws URISyntaxException, UnsupportedEncodingException {
         client = new WebSocketClient(new URI("ws://10.10.1.53:9080/parser-admin/alarmInfoSocketServer"), new Draft_17()) {
         //client = new WebSocketClient(new URI("ws://121.40.165.18:8800"), new Draft_17()) {
-
             @Override
             public void onOpen(ServerHandshake arg0) {
                 System.out.println("打开连接");
@@ -49,8 +48,6 @@ public class App {
                     e.printStackTrace();
                 }
             }
-
-
         };
 
         client.connect();
