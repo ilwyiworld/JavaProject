@@ -10534,7 +10534,7 @@ define("moxie/runtime/html4/xhr/XMLHttpRequest", [
 							}
 						} catch (ex) {
 							if (Url.hasSameOrigin(meta.url)) {
-								// if response is sent with error code, iframe in IE gets redirected to res://ieframe.dll/http_x.htm
+								// if response is sent with error code, iframe in IE gets redirected to response://ieframe.dll/http_x.htm
 								// which obviously results to cross domain error (wtf?)
 								_status = 404;
 							} else {

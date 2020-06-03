@@ -47,11 +47,11 @@ public class PictureUtils {
                 int status = response.getStatusLine().getStatusCode();
                 if (status == 200) {
                     res = EntityUtils.toString(entity1);
-                    // System.out.println("status " + status + " res " + res);
+                    // System.out.println("status " + status + " response " + response);
                 } else {
                     // error code
                     res = EntityUtils.toString(entity1);
-                    // System.out.println("status " + status + " res " + res);
+                    // System.out.println("status " + status + " response " + response);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

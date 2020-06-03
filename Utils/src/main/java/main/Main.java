@@ -4,9 +4,11 @@ import ch.ethz.ssh2.Connection;
 import ch.ethz.ssh2.SCPClient;
 import ch.ethz.ssh2.Session;
 import ch.ethz.ssh2.StreamGobbler;
+import cn.hutool.Hutool;
 import lombok.Builder;
 import lombok.Data;
 import net.coobird.thumbnailator.Thumbnails;
+import org.apache.commons.compress.compressors.gzip.GzipUtils;
 import org.apache.commons.io.FileUtils;
 
 import java.io.*;

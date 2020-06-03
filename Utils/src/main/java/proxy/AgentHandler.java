@@ -28,7 +28,6 @@ public class AgentHandler implements InvocationHandler {
             }
         }
         Object result = method.invoke(mTarget, args);
-
         return result;
     }
 

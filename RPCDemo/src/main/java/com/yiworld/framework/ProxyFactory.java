@@ -1,6 +1,5 @@
 package com.yiworld.framework;
 
-import com.yiworld.protocol.http.HttpProtocol;
 import com.yiworld.register.RemoteRegister;
 
 import java.lang.reflect.InvocationHandler;

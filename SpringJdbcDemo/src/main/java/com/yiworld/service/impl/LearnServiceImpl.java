@@ -1,7 +1,5 @@
 package com.yiworld.service.impl;
-import com.github.pagehelper.PageHelper;
 import com.yiworld.dao.LearnDao;
-import com.yiworld.dao.LearnMapper;
 import com.yiworld.domain.LearnResouce;
 import com.yiworld.service.LearnService;
 import com.yiworld.tools.Page;
@@ -42,7 +40,7 @@ public class LearnServiceImpl implements LearnService {
 
     @Override
     public Page queryLearnResouceList(Map<String,Object> params) {
-        //mybatis 分页插件 不需要使用page工具类了
+        //mybatis 分页插件 不需要使用 page 工具类了
         //PageHelper.startPage(Integer.parseInt(params.get("page").toString()), Integer.parseInt(params.get("rows").toString()));
         return this.learnDao.queryLearnResouceList(params);
     }

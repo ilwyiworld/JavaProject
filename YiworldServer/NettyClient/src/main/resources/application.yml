@@ -1,0 +1,35 @@
+yiworld:
+  callback:
+    thread:
+      pool:
+        size: 2   # 回调线程池大小
+      queue:
+        size: 2   # 回调线程队列大小
+  heartbeat:
+    time: 60      # 检测多少秒没有收到服务端端心跳后重新登录获取连接
+  msg:
+    logger:
+      path: /opt/logs/yiworld/    # 消息记录存放路径
+  reconnect:
+    count: 3      # 客户端连接失败重连次数
+  route:
+    url: http://localhost:8083/
+  user:
+    id: 1586617710861       # 客户端唯一ID
+    userName: zhangsan
+logging:
+  level:
+    root: error
+management:
+  security:
+    enabled: false    # 关闭健康检查权限
+server:
+  port: 8082
+spring:
+  application:
+    name: yiworld-client
+  boot:
+    admin:
+      url: http://127.0.0.1:8888  # SpringAdmin 地址
+swagger:
+  enable: true

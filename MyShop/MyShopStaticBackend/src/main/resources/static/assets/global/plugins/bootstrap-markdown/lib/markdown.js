@@ -1009,7 +1009,7 @@ function strong_em( tag, md ) {
 
       var last = res[res.length - 1];
 
-      //D:this.debug("processInline from", tag + ": ", uneval( res ) );
+      //D:this.debug("processInline from", tag + ": ", uneval( response ) );
 
       var check = this[state_slot].shift();
       if (last instanceof CloseTag) {

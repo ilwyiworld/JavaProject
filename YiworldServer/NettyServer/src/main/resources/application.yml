@@ -1,0 +1,34 @@
+app:
+  zk:
+    addr: 10.10.1.119:2181
+    connect:
+      timeout: 15000  # zk 连接超时时限
+    root: /route  # zk 注册根节点
+    switch: true  # 是否注册 zk
+yiworld:
+  heartbeat:
+    time: 30  # 检测多少秒没有收到客户端心跳后服务端关闭连接 单位秒
+  route:
+    url: http://localhost:8083/
+  server:
+    port: 11211     # netty 服务器端口
+logging:
+  level:
+    root: info
+management:
+  security:
+    enabled: false  # 关闭健康检查权限
+monitor:
+  channel:
+    map:
+      key: channelMap # 自定义监控端点 key
+server:
+  port: 8081
+spring:
+  application:
+    name: cim-server
+  boot:
+    admin:
+      url: http://127.0.0.1:8888  # SpringAdmin 地址
+swagger:
+  enable: true

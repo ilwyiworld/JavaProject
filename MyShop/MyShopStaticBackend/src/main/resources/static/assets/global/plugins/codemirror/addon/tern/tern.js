@@ -695,6 +695,6 @@
 
     this.addFile = function(name, text) { send({type: "add", name: name, text: text}); };
     this.delFile = function(name) { send({type: "del", name: name}); };
-    this.request = function(body, c) { send({type: "req", body: body}, c); };
+    this.request = function(body, c) { send({type: "request", body: body}, c); };
   }
 });

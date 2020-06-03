@@ -1,7 +1,5 @@
 package com.yiworld.framework;
 
-import com.yiworld.protocol.http.HttpProtocol;
-
 import java.util.Iterator;
 import java.util.ServiceLoader;
 

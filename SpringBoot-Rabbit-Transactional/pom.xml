@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.yiworld</groupId>
-    <artifactId>rabbit</artifactId>
+    <artifactId>SpringBoot-Rabbit-Transactional</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>rabbit</name>
+    <name>SpringBoot-Rabbit-Transactional</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

@@ -1,6 +1,5 @@
 package com.yiworld.weather.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.yiworld.weather.service.CityClient;

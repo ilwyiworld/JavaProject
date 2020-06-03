@@ -1,8 +1,6 @@
 package com.yiworld.consumer;
 
-import com.yiworld.framework.Invocation;
 import com.yiworld.framework.ProxyFactory;
-import com.yiworld.protocol.http.HttpClient;
 import com.yiworld.provider.impl.HelloService;
 
 public class Consumer {
