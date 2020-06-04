@@ -6,9 +6,8 @@ import com.yiworld.client.service.InnerCommand;
 import com.yiworld.client.service.MsgLogger;
 import com.yiworld.client.service.RouteRequest;
 import com.yiworld.client.service.ShutDownMsg;
-import com.yiworld.datastruct.RingBufferWheel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.yiworld.common.datastruct.RingBufferWheel;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +16,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 @Service
+@Slf4j
 public class ShutDownCommand implements InnerCommand {
-    private final static Logger LOGGER = LoggerFactory.getLogger(ShutDownCommand.class);
-
     @Autowired
     private RouteRequest routeRequest ;
 
@@ -55,7 +53,7 @@ public class ShutDownCommand implements InnerCommand {
             }
             client.close();
         } catch (InterruptedException e) {
-            LOGGER.error("InterruptedException", e);
+            log.error("InterruptedException", e);
         }
         echoService.echo("cim close success!");
         System.exit(0);

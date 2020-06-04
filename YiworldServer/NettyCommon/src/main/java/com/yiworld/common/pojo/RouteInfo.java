@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 public class RouteInfo {
     private String ip ;
-    private Integer cimServerPort;
+    private Integer serverPort;
     private Integer httpPort;
 }

@@ -15,11 +15,11 @@ public class SendMsgReqVO extends BaseRequest {
 
     @NotNull(message = "msg 不能为空")
     @ApiModelProperty(required = true, value = "msg", example = "hello")
-    private String msg ;
+    private String msg;
 
     @NotNull(message = "userId 不能为空")
     @ApiModelProperty(required = true, value = "userId", example = "11")
-    private Long userId ;
+    private Long userId;
 
     @Override
     public String toString() {

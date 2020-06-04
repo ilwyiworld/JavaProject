@@ -26,6 +26,7 @@ public class EchoServiceImpl implements EchoService {
 
     /**
      * print msg
+     *
      * @param msg
      * @param place
      * @return

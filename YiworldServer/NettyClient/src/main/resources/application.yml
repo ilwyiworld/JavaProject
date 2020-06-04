@@ -15,8 +15,8 @@ yiworld:
   route:
     url: http://localhost:8083/
   user:
-    id: 1586617710861       # 客户端唯一ID
-    userName: zhangsan
+    id: 1591258563417       # 客户端唯一ID
+    userName: yiworld
 logging:
   level:
     root: error

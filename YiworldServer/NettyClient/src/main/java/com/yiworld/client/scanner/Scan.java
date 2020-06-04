@@ -6,31 +6,29 @@ import com.yiworld.client.service.MsgHandle;
 import com.yiworld.client.service.MsgLogger;
 import com.yiworld.client.util.SpringBeanFactory;
 import com.vdurmont.emoji.EmojiParser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Scanner;
 
+@Slf4j
 public class Scan implements Runnable {
-
-    private final static Logger LOGGER = LoggerFactory.getLogger(Scan.class);
 
     /**
      * 系统参数
      */
     private AppConfiguration configuration;
 
-    private MsgHandle msgHandle ;
+    private MsgHandle msgHandle;
 
-    private MsgLogger msgLogger ;
+    private MsgLogger msgLogger;
 
-    private EchoService echoService ;
+    private EchoService echoService;
 
     public Scan() {
         this.configuration = SpringBeanFactory.getBean(AppConfiguration.class);
-        this.msgHandle = SpringBeanFactory.getBean(MsgHandle.class) ;
-        this.msgLogger = SpringBeanFactory.getBean(MsgLogger.class) ;
-        this.echoService = SpringBeanFactory.getBean(EchoService.class) ;
+        this.msgHandle = SpringBeanFactory.getBean(MsgHandle.class);
+        this.msgLogger = SpringBeanFactory.getBean(MsgLogger.class);
+        this.echoService = SpringBeanFactory.getBean(EchoService.class);
     }
 
     @Override
@@ -45,18 +43,17 @@ public class Scan implements Runnable {
             }
 
             //系统内置命令
-            if (msgHandle.innerCommand(msg)){
+            if (msgHandle.innerCommand(msg)) {
                 continue;
             }
 
             //真正的发送消息
-            msgHandle.sendMsg(msg) ;
+            msgHandle.sendMsg(msg);
 
             //写入聊天记录
-            msgLogger.log(msg) ;
+            msgLogger.log(msg);
 
             echoService.echo(EmojiParser.parseToUnicode(msg));
         }
     }
-
 }

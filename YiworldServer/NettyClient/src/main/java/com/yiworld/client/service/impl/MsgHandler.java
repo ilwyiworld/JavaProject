@@ -10,8 +10,7 @@ import com.yiworld.client.service.RouteRequest;
 import com.yiworld.client.vo.request.GroupReqVO;
 import com.yiworld.client.vo.request.P2PReqVO;
 import com.yiworld.common.util.StringUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +19,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 @Service
+@Slf4j
 public class MsgHandler implements MsgHandle {
-    private final static Logger LOGGER = LoggerFactory.getLogger(MsgHandler.class);
     @Autowired
     private RouteRequest routeRequest;
 
@@ -70,22 +69,23 @@ public class MsgHandler implements MsgHandle {
             try {
                 p2pChat(p2PReqVO);
             } catch (Exception e) {
-                LOGGER.error("Exception", e);
+                log.error("Exception", e);
             }
 
         } else {
-            //群聊
+            // 群聊
             GroupReqVO groupReqVO = new GroupReqVO(configuration.getUserId(), msg);
             try {
                 groupChat(groupReqVO);
             } catch (Exception e) {
-                LOGGER.error("Exception", e);
+                log.error("Exception", e);
             }
         }
     }
 
     /**
      * AI model
+     *
      * @param msg
      */
     private void aiChat(String msg) {
@@ -110,7 +110,7 @@ public class MsgHandler implements MsgHandle {
     @Override
     public boolean checkMsg(String msg) {
         if (StringUtil.isEmpty(msg)) {
-            LOGGER.warn("不能发送空消息！");
+            log.warn("不能发送空消息！");
             return true;
         }
         return false;
@@ -132,17 +132,17 @@ public class MsgHandler implements MsgHandle {
      */
     @Override
     public void shutdown() {
-        LOGGER.info("系统关闭中。。。。");
+        log.info("系统关闭中。。。。");
         routeRequest.offLine();
         msgLogger.stop();
         executor.shutdown();
         try {
             while (!executor.awaitTermination(1, TimeUnit.SECONDS)) {
-                LOGGER.info("线程池关闭中。。。。");
+                log.info("线程池关闭中。。。。");
             }
             client.close();
         } catch (InterruptedException e) {
-            LOGGER.error("InterruptedException", e);
+            log.error("InterruptedException", e);
         }
         System.exit(0);
     }

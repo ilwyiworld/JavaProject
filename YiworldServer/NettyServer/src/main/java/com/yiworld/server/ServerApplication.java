@@ -2,8 +2,7 @@ package com.yiworld.server;
 
 import com.yiworld.server.config.AppConfiguration;
 import com.yiworld.server.kit.RegistryZK;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -13,9 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.net.InetAddress;
 
 @SpringBootApplication
+@Slf4j
 public class ServerApplication implements CommandLineRunner {
-
-    private final static Logger LOGGER = LoggerFactory.getLogger(ServerApplication.class);
 
     @Autowired
     private AppConfiguration appConfiguration;
@@ -25,12 +23,12 @@ public class ServerApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
         SpringApplication.run(ServerApplication.class, args);
-        LOGGER.info("Start server success!!!");
+        log.info("Start server success!!!");
     }
 
     @Override
     public void run(String... args) throws Exception {
-        //获得本机IP
+        // 获得本机 IP
         String addr = InetAddress.getLocalHost().getHostAddress();
         Thread thread = new Thread(new RegistryZK(addr, appConfiguration.getServerPort(), httpPort));
         thread.setName("registry-zk");

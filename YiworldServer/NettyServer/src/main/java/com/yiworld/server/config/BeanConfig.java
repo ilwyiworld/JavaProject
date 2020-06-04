@@ -1,6 +1,6 @@
 package com.yiworld.server.config;
 
-import com.yiworld.constant.Constants;
+import com.yiworld.common.constant.Constants;
 import com.yiworld.common.protocol.RequestProto;
 import okhttp3.OkHttpClient;
 import org.I0Itec.zkclient.ZkClient;

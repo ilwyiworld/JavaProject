@@ -1,6 +1,6 @@
 package com.yiworld.server.controller;
 
-import com.yiworld.constant.Constants;
+import com.yiworld.common.constant.Constants;
 import com.yiworld.common.enums.StatusEnum;
 import com.yiworld.common.response.BaseResponse;
 import com.yiworld.server.api.ServerApi;

@@ -50,15 +50,14 @@ public interface AccountService {
      */
     ServerResVO loadRouteRelatedByUserId(Long userId) ;
 
-
     /**
      * 推送消息
-     * @param cimServerResVO
+     * @param serverResVO
      * @param groupReqVO 消息
      * @param sendUserId 发送者的ID
      * @throws Exception
      */
-    void pushMsg(ServerResVO cimServerResVO, long sendUserId, ChatReqVO groupReqVO) throws Exception;
+    void pushMsg(ServerResVO serverResVO, long sendUserId, ChatReqVO groupReqVO) throws Exception;
 
     /**
      * 用户下线

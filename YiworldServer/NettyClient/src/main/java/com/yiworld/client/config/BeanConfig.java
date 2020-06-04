@@ -2,13 +2,12 @@ package com.yiworld.client.config;
 
 import com.yiworld.client.handle.MsgHandleCaller;
 import com.yiworld.client.service.impl.MsgCallBackListener;
-import com.yiworld.constant.Constants;
-import com.yiworld.datastruct.RingBufferWheel;
+import com.yiworld.common.constant.Constants;
+import com.yiworld.common.datastruct.RingBufferWheel;
 import com.yiworld.common.protocol.RequestProto;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,10 +17,9 @@ import java.util.concurrent.*;
 /**
  * Function:bean 配置
  */
+@Slf4j
 @Configuration
 public class BeanConfig {
-
-    private final static Logger LOGGER = LoggerFactory.getLogger(BeanConfig.class);
 
     @Value("${yiworld.user.id}")
     private long userId;

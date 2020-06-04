@@ -40,7 +40,6 @@ public final class ProxyManager<T> {
         return (T) Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), new Class[]{clazz}, new ProxyInvocation());
     }
 
-
     private class ProxyInvocation implements InvocationHandler {
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
@@ -51,7 +50,7 @@ public final class ProxyManager<T> {
                 throw new YiworldException(StatusEnum.VALIDATION_FAIL);
             }
 
-            // 不直接调用方法，改用 http 请求
+            // 不直接调用方法，改用 http 请求，方法名和 url mapping 一样
             if (method.getParameterTypes().length > 0){
                 Object para = args[0];
                 Class<?> parameterType = method.getParameterTypes()[0];

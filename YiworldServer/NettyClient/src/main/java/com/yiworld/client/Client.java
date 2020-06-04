@@ -11,7 +11,7 @@ import com.yiworld.client.thread.ContextHolder;
 import com.yiworld.client.vo.request.GoogleProtocolVO;
 import com.yiworld.client.vo.request.LoginReqVO;
 import com.yiworld.client.vo.response.ServerResVO;
-import com.yiworld.constant.Constants;
+import com.yiworld.common.constant.Constants;
 import com.yiworld.common.protocol.RequestProto;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
@@ -23,8 +23,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.concurrent.DefaultThreadFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -32,9 +31,8 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 @Component
+@Slf4j
 public class Client {
-
-    private final static Logger LOGGER = LoggerFactory.getLogger(Client.class);
 
     private EventLoopGroup group = new NioEventLoopGroup(0, new DefaultThreadFactory("yiworld-work"));
 
@@ -71,44 +69,43 @@ public class Client {
 
     @PostConstruct
     public void start() throws Exception {
-        //登录 + 获取可以使用的服务器 ip+port
-        ServerResVO.ServerInfo yiworldServer = userLogin();
+        // 登录 + 获取可以使用的服务器 ip+port
+        ServerResVO.ServerInfo server = userLogin();
 
-        //启动客户端
-        startClient(yiworldServer);
+        // 启动客户端
+        startClient(server);
 
-        //向服务端注册
+        // 向服务端注册
         loginServer();
     }
 
     /**
      * 启动客户端
      *
-     * @param yiworldServer
+     * @param server
      * @throws Exception
      */
-    private void startClient(ServerResVO.ServerInfo yiworldServer) {
+    private void startClient(ServerResVO.ServerInfo server) {
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.group(group)
                 .channel(NioSocketChannel.class)
                 .handler(new ClientHandleInitializer())
         ;
-
         ChannelFuture future = null;
         try {
-            future = bootstrap.connect(yiworldServer.getIp(), yiworldServer.getCimServerPort()).sync();
+            future = bootstrap.connect(server.getIp(), server.getServerPort()).sync();
         } catch (Exception e) {
             errorCount++;
 
             if (errorCount >= configuration.getErrorCount()) {
-                LOGGER.error("连接失败次数达到上限[{}]次", errorCount);
+                log.error("连接失败次数达到上限[{}]次", errorCount);
                 msgHandle.shutdown();
             }
-            LOGGER.error("Connect fail!", e);
+            log.error("Connect fail!", e);
         }
         if (future.isSuccess()) {
             echoService.echo("Start yiworld client success!");
-            LOGGER.info("启动 yiworld client 成功");
+            log.info("启动 yiworld client 成功");
         }
         channel = (SocketChannel) future.channel();
     }
@@ -121,25 +118,22 @@ public class Client {
      */
     private ServerResVO.ServerInfo userLogin() {
         LoginReqVO loginReqVO = new LoginReqVO(userId, userName);
-        ServerResVO.ServerInfo yiworldServer = null;
+        ServerResVO.ServerInfo server = null;
         try {
-            yiworldServer = routeRequest.getServer(loginReqVO);
-
-            //保存系统信息
-            clientInfo.saveServiceInfo(yiworldServer.getIp() + ":" + yiworldServer.getCimServerPort())
+            server = routeRequest.getServer(loginReqVO);
+            // 保存系统信息
+            clientInfo.saveServiceInfo(server.getIp() + ":" + server.getServerPort())
                     .saveUserInfo(userId, userName);
-
-            LOGGER.info("yiworldServer=[{}]", yiworldServer.toString());
+            log.info("server=[{}]", server.toString());
         } catch (Exception e) {
             errorCount++;
-
             if (errorCount >= configuration.getErrorCount()) {
                 echoService.echo("The maximum number of reconnections has been reached[{}]times, close yiworld client!", errorCount);
                 msgHandle.shutdown();
             }
-            LOGGER.error("login fail", e);
+            log.error("login fail", e);
         }
-        return yiworldServer;
+        return server;
     }
 
     /**
@@ -167,7 +161,7 @@ public class Client {
         message.writeBytes(msg.getBytes());
         ChannelFuture future = channel.writeAndFlush(message);
         future.addListener((ChannelFutureListener) channelFuture ->
-                LOGGER.info("客户端手动发消息成功={}", msg));
+                log.info("客户端手动发消息成功={}", msg));
 
     }
 
@@ -177,18 +171,15 @@ public class Client {
      * @param googleProtocolVO
      */
     public void sendGoogleProtocolMsg(GoogleProtocolVO googleProtocolVO) {
-
         RequestProto.ReqProtocol protocol = RequestProto.ReqProtocol.newBuilder()
                 .setRequestId(googleProtocolVO.getRequestId())
                 .setReqMsg(googleProtocolVO.getMsg())
                 .setType(Constants.CommandType.MSG)
                 .build();
 
-
         ChannelFuture future = channel.writeAndFlush(protocol);
         future.addListener((ChannelFutureListener) channelFuture ->
-                LOGGER.info("客户端手动发送 Google Protocol 成功={}", googleProtocolVO.toString()));
-
+                log.info("客户端手动发送 Google Protocol 成功={}", googleProtocolVO.toString()));
     }
 
     /**

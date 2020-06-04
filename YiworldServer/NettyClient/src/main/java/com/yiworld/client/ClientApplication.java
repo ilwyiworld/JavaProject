@@ -2,8 +2,7 @@ package com.yiworld.client;
 
 import com.yiworld.client.scanner.Scan;
 import com.yiworld.client.service.impl.ClientInfo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,15 +12,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author crossoverJie
  */
 @SpringBootApplication
+@Slf4j
 public class ClientApplication implements CommandLineRunner{
-
-	private final static Logger LOGGER = LoggerFactory.getLogger(ClientApplication.class);
 
 	@Autowired
 	private ClientInfo clientInfo ;
 	public static void main(String[] args) {
         SpringApplication.run(ClientApplication.class, args);
-		LOGGER.info("启动 Client 服务成功");
+		log.info("启动 Client 服务成功");
 	}
 
 	@Override

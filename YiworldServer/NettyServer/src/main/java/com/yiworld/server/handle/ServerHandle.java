@@ -1,6 +1,6 @@
 package com.yiworld.server.handle;
 
-import com.yiworld.constant.Constants;
+import com.yiworld.common.constant.Constants;
 import com.yiworld.common.exception.YiworldException;
 import com.yiworld.common.kit.HeartBeatHandler;
 import com.yiworld.common.pojo.UserInfo;
@@ -17,13 +17,11 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 @ChannelHandler.Sharable
+@Slf4j
 public class ServerHandle extends SimpleChannelInboundHandler<RequestProto.ReqProtocol> {
-
-    private final static Logger LOGGER = LoggerFactory.getLogger(ServerHandle.class);
 
     /**
      * 取消绑定
@@ -35,7 +33,7 @@ public class ServerHandle extends SimpleChannelInboundHandler<RequestProto.ReqPr
         //可能出现业务判断离线后再次触发 channelInactive
         UserInfo userInfo = SessionSocketHolder.getUserId((NioSocketChannel) ctx.channel());
         if (userInfo != null){
-            LOGGER.warn("[{}] trigger channelInactive offline!",userInfo.getUserName());
+            log.warn("[{}] trigger channelInactive offline!",userInfo.getUserName());
             //Clear route info and offline.
             RouteHandler routeHandler = SpringBeanFactory.getBean(RouteHandler.class);
             routeHandler.userOffLine(userInfo,(NioSocketChannel) ctx.channel());
@@ -48,7 +46,7 @@ public class ServerHandle extends SimpleChannelInboundHandler<RequestProto.ReqPr
         if (evt instanceof IdleStateEvent) {
             IdleStateEvent idleStateEvent = (IdleStateEvent) evt;
             if (idleStateEvent.state() == IdleState.READER_IDLE) {
-                LOGGER.info("定时检测客户端端是否存活");
+                log.info("定时检测客户端端是否存活");
                 HeartBeatHandler heartBeatHandler = SpringBeanFactory.getBean(ServerHeartBeatHandlerImpl.class) ;
                 heartBeatHandler.process(ctx) ;
             }
@@ -60,12 +58,12 @@ public class ServerHandle extends SimpleChannelInboundHandler<RequestProto.ReqPr
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, RequestProto.ReqProtocol msg) {
-        LOGGER.info("received msg=[{}]", msg.toString());
+        log.info("received msg=[{}]", msg.toString());
         if (msg.getType() == Constants.CommandType.LOGIN) {
             //保存客户端与 Channel 之间的关系
             SessionSocketHolder.put(msg.getRequestId(), (NioSocketChannel) ctx.channel());
             SessionSocketHolder.saveSession(msg.getRequestId(), msg.getReqMsg());
-            LOGGER.info("client [{}] online success!!", msg.getReqMsg());
+            log.info("client [{}] online success!!", msg.getReqMsg());
         }
 
         //心跳更新时间
@@ -76,7 +74,7 @@ public class ServerHandle extends SimpleChannelInboundHandler<RequestProto.ReqPr
                     RequestProto.ReqProtocol.class);
             ctx.writeAndFlush(heartBeat).addListeners((ChannelFutureListener) future -> {
                 if (!future.isSuccess()) {
-                    LOGGER.error("IO error,close Channel");
+                    log.error("IO error,close Channel");
                     future.channel().close();
                 }
             }) ;
@@ -88,6 +86,6 @@ public class ServerHandle extends SimpleChannelInboundHandler<RequestProto.ReqPr
         if (YiworldException.isResetByPeer(cause.getMessage())) {
             return;
         }
-        LOGGER.error(cause.getMessage(), cause);
+        log.error(cause.getMessage(), cause);
     }
 }

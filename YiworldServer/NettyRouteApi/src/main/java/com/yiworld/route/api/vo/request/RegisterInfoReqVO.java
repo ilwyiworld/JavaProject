@@ -10,8 +10,8 @@ import javax.validation.constraints.NotNull;
 public class RegisterInfoReqVO extends BaseRequest {
 
     @NotNull(message = "用户名不能为空")
-    @ApiModelProperty(required = true, value = "userName", example = "zhangsan")
-    private String userName ;
+    @ApiModelProperty(required = true, value = "userName")
+    private String userName;
 
     @Override
     public String toString() {

@@ -19,7 +19,6 @@ public class LoopHandle implements RouteHandle {
         if (position < 0) {
             position = 0L;
         }
-
         return values.get(position.intValue());
     }
 }

@@ -4,12 +4,10 @@ import com.yiworld.client.service.impl.ClientHeartBeatHandlerImpl;
 import com.yiworld.client.util.SpringBeanFactory;
 import com.yiworld.common.kit.HeartBeatHandler;
 import io.netty.channel.ChannelHandlerContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class ReConnectJob implements Runnable {
-
-    private final static Logger LOGGER = LoggerFactory.getLogger(ReConnectJob.class);
 
     private ChannelHandlerContext context ;
 
@@ -25,7 +23,7 @@ public class ReConnectJob implements Runnable {
         try {
             heartBeatHandler.process(context);
         } catch (Exception e) {
-            LOGGER.error("Exception",e);
+            log.error("Exception",e);
         }
     }
 }

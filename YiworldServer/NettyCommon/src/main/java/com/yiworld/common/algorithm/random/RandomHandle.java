@@ -19,7 +19,6 @@ public class RandomHandle implements RouteHandle {
             throw new YiworldException(StatusEnum.SERVER_NOT_AVAILABLE) ;
         }
         int offset = ThreadLocalRandom.current().nextInt(size);
-
         return values.get(offset);
     }
 }

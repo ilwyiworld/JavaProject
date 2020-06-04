@@ -36,12 +36,10 @@ public abstract class AbstractConsistentHash {
      * @return
      */
     public String process(List<String> values,String key){
-
         for (String value : values) {
             add(hash(value), value);
         }
         sort();
-
         return getFirstNodeValue(key) ;
     }
 
@@ -64,7 +62,6 @@ public abstract class AbstractConsistentHash {
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException("Unknown string :" + value, e);
         }
-
         md5.update(keyBytes);
         byte[] digest = md5.digest();
 

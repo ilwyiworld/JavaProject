@@ -10,7 +10,7 @@ public class MsgHandleCaller {
     /**
      * 回调接口
      */
-    private CustomMsgHandleListener msgHandleListener ;
+    private CustomMsgHandleListener msgHandleListener;
 
     public MsgHandleCaller(CustomMsgHandleListener msgHandleListener) {
         this.msgHandleListener = msgHandleListener;

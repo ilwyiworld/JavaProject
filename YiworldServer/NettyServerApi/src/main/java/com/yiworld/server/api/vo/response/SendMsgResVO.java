@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class SendMsgResVO {
-    private String msg ;
+    private String msg;
 }

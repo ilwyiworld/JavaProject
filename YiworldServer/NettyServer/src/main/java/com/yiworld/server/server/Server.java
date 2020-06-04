@@ -1,6 +1,6 @@
 package com.yiworld.server.server;
 
-import com.yiworld.constant.Constants;
+import com.yiworld.common.constant.Constants;
 import com.yiworld.common.protocol.RequestProto;
 import com.yiworld.server.api.vo.request.SendMsgReqVO;
 import com.yiworld.server.init.ServerInitializer;
@@ -13,8 +13,7 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -23,9 +22,8 @@ import javax.annotation.PreDestroy;
 import java.net.InetSocketAddress;
 
 @Component
+@Slf4j
 public class Server {
-
-    private final static Logger LOGGER = LoggerFactory.getLogger(Server.class);
 
     private EventLoopGroup boss = new NioEventLoopGroup();
     private EventLoopGroup work = new NioEventLoopGroup();
@@ -50,7 +48,7 @@ public class Server {
                 .childHandler(new ServerInitializer());
         ChannelFuture future = bootstrap.bind().sync();
         if (future.isSuccess()) {
-            LOGGER.info("Start server success!!!");
+            log.info("Start server success!!!");
         }
     }
 
@@ -62,7 +60,7 @@ public class Server {
     public void destroy() {
         boss.shutdownGracefully().syncUninterruptibly();
         work.shutdownGracefully().syncUninterruptibly();
-        LOGGER.info("Close server success!!!");
+        log.info("Close server success!!!");
     }
 
     /**
@@ -73,7 +71,7 @@ public class Server {
         NioSocketChannel socketChannel = SessionSocketHolder.get(sendMsgReqVO.getUserId());
 
         if (null == socketChannel) {
-            LOGGER.error("client {} offline!", sendMsgReqVO.getUserId());
+            log.error("client {} offline!", sendMsgReqVO.getUserId());
         }
         RequestProto.ReqProtocol protocol = RequestProto.ReqProtocol.newBuilder()
                 .setRequestId(sendMsgReqVO.getUserId())
@@ -83,6 +81,6 @@ public class Server {
 
         ChannelFuture future = socketChannel.writeAndFlush(protocol);
         future.addListener((ChannelFutureListener) channelFuture ->
-                LOGGER.info("server push msg:[{}]", sendMsgReqVO.toString()));
+                log.info("server push msg:[{}]", sendMsgReqVO.toString()));
     }
 }

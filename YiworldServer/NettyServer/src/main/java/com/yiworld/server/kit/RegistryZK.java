@@ -2,12 +2,10 @@ package com.yiworld.server.kit;
 
 import com.yiworld.server.config.AppConfiguration;
 import com.yiworld.server.util.SpringBeanFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class RegistryZK implements Runnable {
-
-    private static Logger logger = LoggerFactory.getLogger(RegistryZK.class);
 
     private ZKit zKit;
 
@@ -33,7 +31,7 @@ public class RegistryZK implements Runnable {
         if (appConfiguration.isZkSwitch()) {
             String path = appConfiguration.getZkRoot() + "/ip-" + ip + ":" + serverPort + ":" + httpPort;
             zKit.createNode(path);
-            logger.info("Registry zookeeper success, msg=[{}]", path);
+            log.info("Registry zookeeper success, msg=[{}]", path);
         }
     }
 }

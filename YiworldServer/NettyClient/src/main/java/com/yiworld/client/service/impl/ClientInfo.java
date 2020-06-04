@@ -1,6 +1,8 @@
 package com.yiworld.client.service.impl;
 
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -30,45 +32,12 @@ public class ClientInfo {
         return this;
     }
 
+    @NoArgsConstructor
+    @Data
     public class Info{
         private String userName;
         private long userId ;
         private String serviceInfo ;
         private Date startDate ;
-
-        public Info() {
-        }
-
-        public String getUserName() {
-            return userName;
-        }
-
-        public void setUserName(String userName) {
-            this.userName = userName;
-        }
-
-        public long getUserId() {
-            return userId;
-        }
-
-        public void setUserId(long userId) {
-            this.userId = userId;
-        }
-
-        public String getServiceInfo() {
-            return serviceInfo;
-        }
-
-        public void setServiceInfo(String serviceInfo) {
-            this.serviceInfo = serviceInfo;
-        }
-
-        public Date getStartDate() {
-            return startDate;
-        }
-
-        public void setStartDate(Date startDate) {
-            this.startDate = startDate;
-        }
     }
 }

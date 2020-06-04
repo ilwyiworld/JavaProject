@@ -7,19 +7,17 @@ import com.yiworld.route.api.vo.request.ChatReqVO;
 import com.yiworld.server.config.AppConfiguration;
 import com.yiworld.server.util.SessionSocketHolder;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
 @Component
+@Slf4j
 public class RouteHandler {
-    private final static Logger LOGGER = LoggerFactory.getLogger(RouteHandler.class);
-
     @Autowired
     private OkHttpClient okHttpClient;
 
@@ -35,7 +33,7 @@ public class RouteHandler {
      */
     public void userOffLine(UserInfo userInfo, NioSocketChannel channel) throws IOException {
         if (userInfo != null) {
-            LOGGER.info("Account [{}] offline", userInfo.getUserName());
+            log.info("Account [{}] offline", userInfo.getUserName());
             SessionSocketHolder.removeSession(userInfo.getUserId());
             //清除路由关系
             clearRouteInfo(userInfo);
@@ -56,7 +54,7 @@ public class RouteHandler {
         try {
             response = (Response) routeApi.offLine(vo);
         } catch (Exception e) {
-            LOGGER.error("Exception", e);
+            log.error("Exception", e);
         } finally {
             response.body().close();
         }

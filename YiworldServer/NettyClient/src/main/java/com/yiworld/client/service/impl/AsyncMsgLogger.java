@@ -2,8 +2,7 @@ package com.yiworld.client.service.impl;
 
 import com.yiworld.client.config.AppConfiguration;
 import com.yiworld.client.service.MsgLogger;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +18,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
+@Slf4j
 public class AsyncMsgLogger implements MsgLogger {
-
-    private final static Logger LOGGER = LoggerFactory.getLogger(AsyncMsgLogger.class);
 
     /**
      * The default buffer size.
@@ -37,13 +35,13 @@ public class AsyncMsgLogger implements MsgLogger {
 
     @Override
     public void log(String msg) {
-        //开始消费
+        // 开始消费
         startMsgLogger();
         try {
             // TODO: 2019/1/6 消息堆满是否阻塞线程？
             blockingQueue.put(msg);
         } catch (InterruptedException e) {
-            LOGGER.error("InterruptedException", e);
+            log.error("InterruptedException", e);
         }
     }
 
@@ -60,7 +58,6 @@ public class AsyncMsgLogger implements MsgLogger {
             }
         }
     }
-
 
     private void writeLog(String msg) {
         LocalDate today = LocalDate.now();
@@ -80,7 +77,7 @@ public class AsyncMsgLogger implements MsgLogger {
             List<String> lines = Arrays.asList(msg);
             Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         } catch (IOException e) {
-            LOGGER.info("IOException", e);
+            log.info("IOException", e);
         }
 
     }
@@ -108,7 +105,6 @@ public class AsyncMsgLogger implements MsgLogger {
     @Override
     public String query(String key) {
         StringBuilder sb = new StringBuilder();
-
         Path path = Paths.get(appConfiguration.getMsgLoggerPath() + appConfiguration.getUserName() + "/");
 
         try {
@@ -124,9 +120,8 @@ public class AsyncMsgLogger implements MsgLogger {
 
             }
         } catch (IOException e) {
-            LOGGER.info("IOException", e);
+            log.info("IOException", e);
         }
-
         return sb.toString().replace(key, "\033[31;4m" + key + "\033[0m");
     }
 }

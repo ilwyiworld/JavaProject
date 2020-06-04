@@ -4,16 +4,14 @@ import com.yiworld.client.service.EchoService;
 import com.yiworld.client.service.InnerCommand;
 import com.yiworld.client.service.RouteRequest;
 import com.yiworld.client.vo.response.OnlineUsersResVO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Slf4j
 public class PrintOnlineUsersCommand implements InnerCommand {
-    private final static Logger LOGGER = LoggerFactory.getLogger(PrintOnlineUsersCommand.class);
-
     @Autowired
     private RouteRequest routeRequest ;
 
@@ -30,7 +28,7 @@ public class PrintOnlineUsersCommand implements InnerCommand {
             }
             echoService.echo("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         } catch (Exception e) {
-            LOGGER.error("Exception", e);
+            log.error("Exception", e);
         }
     }
 }

@@ -27,7 +27,6 @@ public interface UserInfoCacheService {
      */
     void removeLoginStatus(Long userId) throws Exception ;
 
-
     /**
      * query all online user
      * @return online user

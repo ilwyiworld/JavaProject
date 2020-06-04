@@ -4,16 +4,14 @@ import com.yiworld.client.service.impl.command.PrintAllCommand;
 import com.yiworld.client.util.SpringBeanFactory;
 import com.yiworld.common.enums.SystemCommandEnum;
 import com.yiworld.common.util.StringUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
 @Component
+@Slf4j
 public class InnerCommandContext {
-    private final static Logger LOGGER = LoggerFactory.getLogger(InnerCommandContext.class);
-
     /**
      * 获取执行器实例
      * @param command 执行器实例
@@ -33,7 +31,7 @@ public class InnerCommandContext {
             }
             innerCommand = (InnerCommand) SpringBeanFactory.getBean(Class.forName(clazz));
         } catch (Exception e) {
-            LOGGER.error("Exception", e);
+            log.error("Exception", e);
         }
 
         return innerCommand;

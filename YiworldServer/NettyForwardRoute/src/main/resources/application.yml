@@ -1,9 +1,9 @@
 app:
   route:
     way: com.yiworld.common.algorithm.consistenthash.ConsistentHashHandle    # 路由策略，一致性 hash
-    way.consitenthash: com.yiworld.common.algorithm.consistenthash.TreeMapConsistentHash  # 一致性 hash 算法具体实现--TreeMap
+    way.consistenthash: com.yiworld.common.algorithm.consistenthash.TreeMapConsistentHash  # 一致性 hash 算法具体实现--TreeMap
   zk:
-    addr: ip:port
+    addr: 10.10.1.119:2181
     connect:
       timeout: 15000  # zk 连接超时时限
     root: /route      # zk 注册根节点
@@ -20,7 +20,6 @@ spring:
     name: forward-route
   redis:        # Redis 配置
     host: 10.10.1.119
-    password:
     pool:
       max-active: 100
       max-idle: 100

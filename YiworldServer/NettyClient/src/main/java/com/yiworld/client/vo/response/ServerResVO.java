@@ -25,14 +25,14 @@ public class ServerResVO implements Serializable {
          * port : 8081
          */
         private String ip ;
-        private Integer cimServerPort;
+        private Integer serverPort;
         private Integer httpPort;
 
         @Override
         public String toString() {
             return "ServerInfo{" +
                     "ip='" + ip + '\'' +
-                    ", cimServerPort=" + cimServerPort +
+                    ", cimServerPort=" + serverPort +
                     ", httpPort=" + httpPort +
                     '}';
         }

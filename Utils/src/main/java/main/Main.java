@@ -17,6 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.Objects;
 
@@ -39,6 +40,7 @@ public class Main {
             FileUtils.deleteQuietly(file);
             System.out.println("delete file " + file.getName());
         });*/
+        System.out.println(new Date());
     }
 
     public static void scaleImg() throws IOException {

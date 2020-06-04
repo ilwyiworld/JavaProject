@@ -8,13 +8,12 @@ import java.io.Serializable;
 @Data
 public class ServerResVO implements Serializable {
     private String ip ;
-    private Integer cimServerPort;
+    private Integer serverPort;
     private Integer httpPort;
 
     public ServerResVO(RouteInfo routeInfo) {
         this.ip = routeInfo.getIp();
-        this.cimServerPort = routeInfo.getCimServerPort();
+        this.serverPort = routeInfo.getServerPort();
         this.httpPort = routeInfo.getHttpPort();
     }
-
 }

@@ -2,8 +2,6 @@ package com.yiworld.server.kit;
 
 import com.yiworld.server.config.AppConfiguration;
 import org.I0Itec.zkclient.ZkClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,9 +10,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ZKit {
-
-    private static Logger logger = LoggerFactory.getLogger(ZKit.class);
-
 
     @Autowired
     private ZkClient zkClient;

@@ -26,6 +26,6 @@ public class AppConfiguration {
     @Value("${app.route.way}")
     private String routeWay;
 
-    @Value("${app.route.way.consitenthash}")
+    @Value("${app.route.way.consistenthash}")
     private String consistentHashWay;
 }

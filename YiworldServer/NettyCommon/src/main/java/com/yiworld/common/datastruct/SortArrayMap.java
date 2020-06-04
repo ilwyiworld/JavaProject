@@ -1,6 +1,7 @@
 package com.yiworld.common.datastruct;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * Function:根据 key 排序的 Map
@@ -64,9 +65,7 @@ public class SortArrayMap {
                 return bucket.value;
             }
         }
-
         return buckets[0].value;
-
     }
 
     /**
@@ -122,7 +121,5 @@ public class SortArrayMap {
                     ", value='" + value + '\'' +
                     '}';
         }
-
     }
-
 }

@@ -2,8 +2,6 @@ package com.yiworld.route.cache;
 
 import com.yiworld.route.kit.ZKit;
 import com.google.common.cache.LoadingCache;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,8 +15,6 @@ import java.util.Map;
 @Component
 public class ServerCache {
 
-    private static Logger logger = LoggerFactory.getLogger(ServerCache.class) ;
-
     @Autowired
     private LoadingCache<String, String> cache;
 
@@ -31,19 +27,18 @@ public class ServerCache {
 
 
     /**
-     * 更新所有缓存/先删除 再新增
-     *
+     * 更新所有缓存 先删除 再新增
      * @param currentChildren
      */
     public void updateCache(List<String> currentChildren) {
         cache.invalidateAll();
         for (String currentChild : currentChildren) {
             // currentChildren=ip-127.0.0.1:11212:9082 or 127.0.0.1:11212:9082
-            String key ;
-            if (currentChild.split("-").length == 2){
+            String key;
+            if (currentChild.split("-").length == 2) {
                 key = currentChild.split("-")[1];
-            }else {
-                key = currentChild ;
+            } else {
+                key = currentChild;
             }
             addCache(key);
         }
@@ -70,14 +65,13 @@ public class ServerCache {
             list.add(entry.getKey());
         }
         return list;
-
     }
 
     /**
      * rebuild cache list
      */
-    public void rebuildCacheList(){
-        updateCache(getServerList()) ;
+    public void rebuildCacheList() {
+        updateCache(getServerList());
     }
 
 }

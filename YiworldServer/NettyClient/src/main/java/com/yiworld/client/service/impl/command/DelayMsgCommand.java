@@ -3,8 +3,8 @@ package com.yiworld.client.service.impl.command;
 import com.yiworld.client.service.EchoService;
 import com.yiworld.client.service.InnerCommand;
 import com.yiworld.client.service.MsgHandle;
-import com.yiworld.datastruct.RingBufferWheel;
 import com.vdurmont.emoji.EmojiParser;
+import com.yiworld.common.datastruct.RingBufferWheel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
