@@ -15,7 +15,7 @@ public class ClientHandleInitializer extends ChannelInitializer<Channel> {
     private final ClientHandle cimClientHandle = new ClientHandle();
 
     @Override
-    protected void initChannel(Channel ch) throws Exception {
+    protected void initChannel(Channel ch) {
         ch.pipeline()
                 // 10 秒没发送消息 将 IdleStateHandler 添加到 ChannelPipeline 中
                 .addLast(new IdleStateHandler(0, 10, 0))

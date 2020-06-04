@@ -117,7 +117,6 @@ public class AsyncMsgLogger implements MsgLogger {
                         sb.append(msg).append("\n");
                     }
                 }
-
             }
         } catch (IOException e) {
             log.info("IOException", e);

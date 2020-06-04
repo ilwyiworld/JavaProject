@@ -59,7 +59,7 @@ public class ClientHandle extends SimpleChannelInboundHandler<ResponseProto.ResP
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         //客户端和服务端建立连接时调用
-        log.info("cim server connect success!");
+        log.info("server connect success!");
     }
 
     @Override
@@ -89,7 +89,7 @@ public class ClientHandle extends SimpleChannelInboundHandler<ResponseProto.ResP
 
         //心跳更新时间
         if (msg.getType() == Constants.CommandType.PING) {
-            //log.info("收到服务端心跳！！！");
+            // log.info("收到服务端心跳！！！");
             NettyAttrUtil.updateReaderTime(ctx.channel(), System.currentTimeMillis());
         }
 
