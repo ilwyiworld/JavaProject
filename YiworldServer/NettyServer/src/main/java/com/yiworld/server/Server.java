@@ -1,4 +1,4 @@
-package com.yiworld.server.server;
+package com.yiworld.server;
 
 import com.yiworld.common.constant.Constants;
 import com.yiworld.common.protocol.RequestProto;
@@ -43,7 +43,7 @@ public class Server {
                 .group(boss, work)
                 .channel(NioServerSocketChannel.class)
                 .localAddress(new InetSocketAddress(nettyPort))
-                //保持长连接
+                // 保持长连接
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
                 .childHandler(new ServerInitializer());
         ChannelFuture future = bootstrap.bind().sync();
@@ -51,7 +51,6 @@ public class Server {
             log.info("Start server success!!!");
         }
     }
-
 
     /**
      * 销毁

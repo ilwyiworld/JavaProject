@@ -35,7 +35,7 @@ public class Server {
             /***
              * 配置具体的数据处理方式。
              * 这里的事件处理类经常会被用来处理一个最近的已经接收的 Channel。
-             * ChannelInitializer 是一个特殊的处理类，他的目的是帮助使用者配置一个新的 Channel。
+             * ChannelInitializer 是一个特殊的处理类，目的是帮助使用者配置一个新的 Channel。
              * 也许你想通过增加一些处理类比如 NettyServerHandler 来配置一个新的 Channel，
              * 或者其对应的 ChannelPipeline 来实现你的网络程序。当你的程序变的复杂时，可能你会增加更多的处理类到 pipline 上，
              * 然后提取这些匿名类到最顶层的类上。

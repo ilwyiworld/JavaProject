@@ -41,7 +41,7 @@ public class ShutDownCommand implements InnerCommand {
 
     @Override
     public void process(String msg) {
-        echoService.echo("cim client closing...");
+        echoService.echo("client closing...");
         shutDownMsg.shutdown();
         routeRequest.offLine();
         msgLogger.stop();
@@ -55,7 +55,7 @@ public class ShutDownCommand implements InnerCommand {
         } catch (InterruptedException e) {
             log.error("InterruptedException", e);
         }
-        echoService.echo("cim close success!");
+        echoService.echo("close success!");
         System.exit(0);
     }
 }

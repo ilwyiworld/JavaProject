@@ -6,7 +6,7 @@ import com.yiworld.common.response.BaseResponse;
 import com.yiworld.server.api.ServerApi;
 import com.yiworld.server.api.vo.request.SendMsgReqVO;
 import com.yiworld.server.api.vo.response.SendMsgResVO;
-import com.yiworld.server.server.Server;
+import com.yiworld.server.Server;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.metrics.CounterService;

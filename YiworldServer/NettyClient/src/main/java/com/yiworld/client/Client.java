@@ -96,7 +96,6 @@ public class Client {
             future = bootstrap.connect(server.getIp(), server.getServerPort()).sync();
         } catch (Exception e) {
             errorCount++;
-
             if (errorCount >= configuration.getErrorCount()) {
                 log.error("连接失败次数达到上限[{}]次", errorCount);
                 msgHandle.shutdown();

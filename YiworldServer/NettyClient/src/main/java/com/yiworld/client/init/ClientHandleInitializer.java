@@ -12,7 +12,7 @@ import io.netty.handler.timeout.IdleStateHandler;
 
 public class ClientHandleInitializer extends ChannelInitializer<Channel> {
 
-    private final ClientHandle cimClientHandle = new ClientHandle();
+    private final ClientHandle clientHandle = new ClientHandle();
 
     @Override
     protected void initChannel(Channel ch) {
@@ -28,7 +28,7 @@ public class ClientHandleInitializer extends ChannelInitializer<Channel> {
                 // 拆包编码
                 .addLast(new ProtobufVarint32LengthFieldPrepender())
                 .addLast(new ProtobufEncoder())
-                .addLast(cimClientHandle)
+                .addLast(clientHandle)
         ;
     }
 }
