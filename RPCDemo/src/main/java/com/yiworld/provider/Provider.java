@@ -16,13 +16,13 @@ public class Provider {
 
         //  2.远程注册
         // 服务名：List<机器地址>
-        URL url=new URL("localhost",8080);
-        RemoteRegister.register(HelloService.class.getName(),url);
+        URL url = new URL("localhost", 8080);
+        RemoteRegister.register(HelloService.class.getName(), url);
 
-        //  3.启动tomcat
+        //  3.启动服务器 tomcat
         /*HttpServer server =new HttpServer();
         server.start("localhost",8080);*/
-        Protocol protocol= ProtocolFactory.getProtocol();
+        Protocol protocol = ProtocolFactory.getProtocol();
         protocol.start(url);
     }
 }

@@ -1,3 +1,4 @@
 red=com.yiworld.dubbospi.RedCar
 blue=com.yiworld.dubbospi.BlueCar
-com.yiworld.dubbospi.CarWrapper
+
+# com.yiworld.dubbospi.CarWrapper

@@ -9,6 +9,6 @@ import java.io.IOException;
 public class DispatcherServlet extends HttpServlet {
     @Override
     public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        new HttpServletHandler().handler(req,res);
+        new HttpServletHandler().handler(req, res);
     }
 }

@@ -3,7 +3,7 @@ package com.yiworld;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = "com.yworld")
+@SpringBootApplication(scanBasePackages = "com.yiworld")
 public class RabbitApplication {
 
     public static void main(String[] args) {
