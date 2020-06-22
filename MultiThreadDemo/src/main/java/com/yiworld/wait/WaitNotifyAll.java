@@ -28,7 +28,6 @@ public class WaitNotifyAll implements Runnable {
                 System.out.println(currentThread.getName() + " in run before notifyAll, state is " + currentThread.getState());
                 objectOne.notifyAll();
                 System.out.println(currentThread.getName() + " in run after notifyAll, state is " + currentThread.getState());
-
             }
         }, "thread-three");
         threadOne.start();

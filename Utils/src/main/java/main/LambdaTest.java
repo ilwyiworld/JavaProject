@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 public class LambdaTest {
     public static void main(String[] args) {
         // 静态方法引用--通过类名调用
-        Consumer<String> consumerStatic = Test::MyNameStatic;
+        Consumer<String> consumerStatic = Test::myNameStatic;
         consumerStatic.accept("3y---static");
 
         //实例方法引用--通过实例调用
@@ -22,7 +22,7 @@ public class LambdaTest {
 
 class Test {
     // 静态方法
-    public static void MyNameStatic(String name) {
+    public static void myNameStatic(String name) {
         System.out.println(name);
     }
 

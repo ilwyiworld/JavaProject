@@ -29,22 +29,22 @@ public class RabbitConfig {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(converter());
 
-        // 消息是否成功发送到Exchange
+        // 消息是否成功发送到 Exchange
         rabbitTemplate.setConfirmCallback((correlationData, ack, cause) -> {
             if (ack) {
-                log.info("消息成功发送到Exchange");
+                log.info("消息成功发送到 Exchange");
                 String msgId = correlationData.getId();
                 msgLogService.updateStatus(msgId, Constant.MsgLogStatus.DELIVER_SUCCESS);
             } else {
-                log.info("消息发送到Exchange失败, {}, cause: {}", correlationData, cause);
+                log.info("消息发送到 Exchange 失败, {}, cause: {}", correlationData, cause);
             }
         });
 
-        // 触发setReturnCallback回调必须设置mandatory=true, 否则Exchange没有找到Queue就会丢弃掉消息, 而不会触发回调
+        // 触发 setReturnCallback 回调必须设置 mandatory=true, 否则 Exchange 没有找到 Queue 就会丢弃掉消息, 而不会触发回调
         rabbitTemplate.setMandatory(true);
-        // 消息是否从Exchange路由到Queue, 注意: 这是一个失败回调, 只有消息从Exchange路由到Queue失败才会回调这个方法
+        // 消息是否从 Exchange 路由到 Queue, 注意: 这是一个失败回调, 只有消息从 Exchange 路由到 Queue 失败才会回调这个方法
         rabbitTemplate.setReturnCallback((message, replyCode, replyText, exchange, routingKey) -> {
-            log.info("消息从Exchange路由到Queue失败: exchange: {}, route: {}, replyCode: {}, replyText: {}, message: {}", exchange, routingKey, replyCode, replyText, message);
+            log.info("消息从 Exchange 路由到 Queue 失败: exchange: {}, route: {}, replyCode: {}, replyText: {}, message: {}", exchange, routingKey, replyCode, replyText, message);
         });
 
         return rabbitTemplate;

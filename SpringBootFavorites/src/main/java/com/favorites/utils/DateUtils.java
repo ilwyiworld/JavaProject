@@ -13,21 +13,10 @@ public class DateUtils {
 	
 	public final static String YYYYMMDDHHMMSS = "yyyyMMddHHmmssSSS";
 	
-    /**
-     * @return
-     * @author neo
-     * @date 2015-5-21
-     */
     public static String getDateSequence() {
         return new SimpleDateFormat(YYYYMMDDHHMMSS).format(new Date());
     }
 
-
-	/**
-	 * @author neo
-	 * @date 2016年8月10日
-	 * @return
-	 */
 	public static long getCurrentTime() {
 		return System.currentTimeMillis();
 	}

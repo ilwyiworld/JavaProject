@@ -22,7 +22,7 @@ public class RpcRequestHandler {
      * 处理 rpcRequest ：调用对应的方法，然后返回方法执行结果
      */
     public Object handle(RpcRequest rpcRequest) {
-        //通过注册中心获取到目标类（客户端需要调用类）
+        // 通过注册中心获取到目标类（客户端需要调用类）
         Object service = serviceProvider.getServiceProvider(rpcRequest.getInterfaceName());
         return invokeTargetMethod(rpcRequest, service);
     }
