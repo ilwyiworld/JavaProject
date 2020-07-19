@@ -1,5 +1,6 @@
 package main;
 
+import avro.shaded.com.google.common.collect.Lists;
 import ch.ethz.ssh2.Connection;
 import ch.ethz.ssh2.SCPClient;
 import ch.ethz.ssh2.Session;
@@ -16,12 +17,16 @@ import java.net.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.Objects;
+import java.util.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.FutureTask;
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
+import org.openjdk.jol.info.ClassLayout;
 
 import javax.imageio.stream.FileImageOutputStream;
 
@@ -30,7 +35,6 @@ import javax.imageio.stream.FileImageOutputStream;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
-        //execCommend("nvidia-smi -L","10.10.1.82",22,"ubuntu","cimevue");
         /*File picFile = new File("/home/ftpuser/pics");
         Files.walk(picFile.toPath(), 2)
                 .map(Path::toFile)
@@ -40,7 +44,9 @@ public class Main {
             FileUtils.deleteQuietly(file);
             System.out.println("delete file " + file.getName());
         });*/
-        System.out.println(new Date());
+        /*long[] weekData = new long[]{0L, 0L, 0L, 0L, 0L, 0L, 0L};
+        ArrayUtils.toObject(weekData);
+        System.out.println(StringUtils.join(ArrayUtils.toObject(weekData),","));*/
     }
 
     public static void scaleImg() throws IOException {
@@ -124,7 +130,6 @@ public class Main {
                         break;
                     }
                     System.out.println("Stdout " + ip + " :" + line);
-                    getGpuInfo(line);
                 }
             } else {
                 result = 1;
@@ -155,12 +160,6 @@ public class Main {
             }
         }
         return result;
-    }
-
-    public static void getGpuInfo(String line) {
-        String gpuNum = line.split(":")[0].trim();
-        String gpuName = line.split(":")[1].split("\\(")[0].trim();
-        System.out.println(gpuNum + ";" + gpuName);
     }
 
     public static int getFile(ByteArrayOutputStream bos, String remoteFile, String ip, int port, String user, String passwd) {
@@ -216,28 +215,5 @@ public class Main {
             }
         }
         return result;
-    }
-
-    @Test
-    public void test() {
-        B b = new B();
-        b.scan();  //我的输出结果是什么？
-    }
-
-    static class A {
-        public void scan() {
-            doScan();
-        }
-
-        protected void doScan() {
-            System.out.println("A.doScan");
-        }
-    }
-
-    static class B extends A {
-        @Override
-        protected void doScan() {
-            System.out.println("B.doScan");
-        }
     }
 }
