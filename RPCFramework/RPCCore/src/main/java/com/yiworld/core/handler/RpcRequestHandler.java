@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  */
 @Slf4j
 public class RpcRequestHandler {
-    private static ServiceProvider serviceProvider=new ServiceProviderImpl();
+    private static ServiceProvider serviceProvider = new ServiceProviderImpl();
 
     /**
      * 处理 rpcRequest ：调用对应的方法，然后返回方法执行结果

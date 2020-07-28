@@ -16,9 +16,9 @@ import java.io.*;
 import java.net.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
@@ -47,6 +47,35 @@ public class Main {
         /*long[] weekData = new long[]{0L, 0L, 0L, 0L, 0L, 0L, 0L};
         ArrayUtils.toObject(weekData);
         System.out.println(StringUtils.join(ArrayUtils.toObject(weekData),","));*/
+        /*LocalDateTime nowDate = LocalDateTime.now().minusHours(12);
+        System.out.println(getDayZeroTime(nowDate));
+        System.out.println(getDayZeroTime(nowDate.with(TemporalAdjusters.firstDayOfMonth())));*/
+        System.out.println(LocalDateTime.ofEpochSecond(1595385508, 0, ZoneOffset.ofHours(8)));
+    }
+
+    public static Long getDayZeroTime(LocalDateTime localDateTime) {
+        try {
+            DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd 00:00:00");
+            // 当天 00:00:00 字符串 2020-06-06 00:00:00
+            String zeroTimeStr = formatter.format(localDateTime);
+            DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime ldt = LocalDateTime.parse(zeroTimeStr, df);
+            return localDateTimeToTimestamp(ldt);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Long localDateTimeToTimestamp(LocalDateTime localDateTime) {
+        try {
+            ZoneId zoneId = ZoneId.systemDefault();
+            Instant instant = localDateTime.atZone(zoneId).toInstant();
+            return instant.toEpochMilli();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static void scaleImg() throws IOException {
