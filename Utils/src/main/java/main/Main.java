@@ -1,6 +1,5 @@
 package main;
 
-import avro.shaded.com.google.common.collect.Lists;
 import ch.ethz.ssh2.Connection;
 import ch.ethz.ssh2.SCPClient;
 import ch.ethz.ssh2.Session;
@@ -12,6 +11,7 @@ import net.coobird.thumbnailator.Thumbnails;
 import org.apache.commons.compress.compressors.gzip.GzipUtils;
 import org.apache.commons.io.FileUtils;
 
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.*;
 import java.nio.file.Files;
@@ -28,6 +28,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.openjdk.jol.info.ClassLayout;
 
+import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageOutputStream;
 
 /**
@@ -50,7 +51,11 @@ public class Main {
         /*LocalDateTime nowDate = LocalDateTime.now().minusHours(12);
         System.out.println(getDayZeroTime(nowDate));
         System.out.println(getDayZeroTime(nowDate.with(TemporalAdjusters.firstDayOfMonth())));*/
-        System.out.println(LocalDateTime.ofEpochSecond(1595385508, 0, ZoneOffset.ofHours(8)));
+        File picture = new File("C:\\Users\\yiliang\\Desktop\\图片\\111111.jpg");
+        BufferedImage sourceImg = ImageIO.read(new FileInputStream(picture));
+        System.out.println(String.format("%.1f",picture.length()/1024.0));
+        System.out.println(sourceImg.getWidth());
+        System.out.println(sourceImg.getHeight());
     }
 
     public static Long getDayZeroTime(LocalDateTime localDateTime) {
