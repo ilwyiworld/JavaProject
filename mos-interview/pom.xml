@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.alibaba.mos</groupId>
-    <artifactId>interview</artifactId>
+    <artifactId>mos-interview</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>interview</name>
+    <name>mos-interview</name>
     <description>面试题</description>
 
     <properties>
